@@ -1,73 +1,800 @@
-<!-- Sidebar Menu-->
-<div class="menu">
-    <span class="close-menu icon-cross2 right-boxed"></span>
-    <div class="menu-lang right-boxed">
-{{--        @foreach (config('app.available_locales') as $locale)--}}
-{{--            <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"--}}
-{{--               class=" @if (app()->getLocale() == $locale) active @endif">{{ strtoupper($locale) }}</a>--}}
-{{--        @endforeach--}}
-    </div>
-    <ul class="menu-list right-boxed">
-        <li class="{{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
-            <a  href="{{route('home', app()->getLocale())}}">Home</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'about' ? 'active' : '' }}">
-            <a  href="{{route('about', app()->getLocale())}}">About Us</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'service' ? 'active' : '' }}">
-            <a  href="{{route('service', app()->getLocale())}}">Services</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'project' ? 'active' : '' }}">
-            <a  href="{{route('project', app()->getLocale())}}">Projects</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'brochures' ? 'active' : '' }}">
-            <a  href="{{route('brochures', app()->getLocale())}}">Brochures</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'careers' ? 'active' : '' }}">
-            <a  href="{{route('careers', app()->getLocale())}}">Careers</a>
-        </li>
-        <li class="{{ Route::currentRouteName() === 'contact' ? 'active' : '' }}">
-            <a  href="{{route('contact', app()->getLocale())}}">Contact Us</a>
-        </li>
-    </ul>
-    <div class="menu-footer right-boxed">
-        <div class="social-list">
-            <a href="" class="icon ion-social-twitter"></a>
-            <a href="" class="icon ion-social-facebook"></a>
-            <a href="" class="icon ion-social-googleplus"></a>
-            <a href="" class="icon ion-social-linkedin"></a>
-            <a href="" class="icon ion-social-dribbble-outline"></a>
+<!-- Navigation panel -->
+<nav class="main-nav dark transparent stick-fixed">
+    <div class="full-wrapper relative clearfix">
+        <!-- Logo ( * your text or image into link tag *) -->
+        <div class="nav-logo-wrap local-scroll @if(app()->getLocale() == 'ar') right @endif">
+            <a href="{{route('home', app()->getLocale())}}" class="logo">
+                @foreach($nav_logos as $nav_logo)
+                @if($nav_logo->is_publish == 1)
+                <img src="{{$nav_logo->logo ? asset('/brands/'.$nav_logo->logo) : asset('/brands/no-logo.jpg')}}"
+                     alt="@if (app()->getLocale() == 'en')
+                     {{$nav_logo->getTranslation('title', 'en')}}
+                     @elseif(app()->getLocale() == 'ar')
+                     {{$nav_logo->getTranslation('title', 'ar')}}
+                     @endif" />
+                @endif
+                @endforeach
+            </a>
         </div>
-        <div class="copy">© General International Group 2020. All Rights Reseverd<br></div>
-    </div>
-</div>
+        <div class="mobile-nav @if(app()->getLocale() == 'ar') left @endif">
+            <i class="fa fa-bars"></i>
+        </div>
 
-<!-- Navbar -->
-<header class="navbar boxed js-navbar">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    <a class="brand" href="{{route('home', app()->getLocale())}}">
-        <img alt="general international group logo" src="{{asset('public/assets/front/images/header-logo.png')}}" width="110">
-        <div class="brand-info">
-            <div class="brand-name"></div>
-            <div class="brand-text"></div>
-        </div>
-    </a>
-    <div class="social-list hidden-xs">
-        <a href="" class="icon ion-social-twitter"></a>
-        <a href="" class="icon ion-social-facebook"></a>
-        <a href="" class="icon ion-social-googleplus"></a>
-        <a href="" class="icon ion-social-linkedin"></a>
-        <a href="" class="icon ion-social-dribbble-outline"></a>
+        <!-- Main Menu -->
+        @foreach($nav_menus as $nav_menu)
+        @if($nav_menu->is_publish == 1)
+            @if(app()->getLocale() == 'en')
+            <div class="inner-nav desktop-nav">
+                <ul class="clearlist">
+                    <li class="{{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
+                        <a class="{{ Route::currentRouteName() === 'home' ? 'active' : '' }}" href="{{route('home', app()->getLocale())}}">
+                                {{$nav_menu->getTranslation('home', 'en')}}
+                        </a>
+                    </li>
+                    <li class="{{ Route::currentRouteName() === 'about' ? 'active' : '' }}">
+                        <a class="{{ Route::currentRouteName() === 'about' ? 'active' : '' }}" href="{{route('about', app()->getLocale())}}">
+                            {{$nav_menu->getTranslation('about', 'en')}}
+                        </a>
+                    </li>
+                    <!-- Item With Sub -->
+                    <li>
+                        <a href="#" class="mn-has-sub
+                         {{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}
+                         {{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}
+                         {{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}
+                         {{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}
+                            ">
+                            {{$nav_menu->getTranslation('what_we_do', 'en')}}
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <!-- Sub Multilevel -->
+                        <ul class="mn-sub mn-has-multi">
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}">
+                                        <a href="{{route('fire_safety', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}">
+                                            <svg version="1.0"  xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 700.000000 853.000000" preserveAspectRatio="xMidYMid meet">
+                                                <g transform="translate(0.000000,853.000000) scale(0.100000,-0.100000)" fill="#e22822" stroke="none">
+                                                    <path d="M3229 8460 c-189 -193 -260 -593 -192 -1087 22 -164 27 -235 27 -413
+    0 -231 -10 -314 -59 -485 -25 -86 -102 -265 -114 -265 -3 1 -29 35 -58 78
+    -121 181 -297 365 -461 482 -76 54 -262 157 -262 145 0 -3 12 -29 26 -58 61
+    -120 133 -340 168 -517 50 -249 61 -587 26 -785 -38 -212 -232 -920 -261 -950
+    -15 -15 -25 3 -62 105 -79 219 -166 362 -301 495 -155 154 -310 234 -559 289
+    -27 6 -24 2 34 -66 155 -180 249 -382 290 -618 36 -209 28 -333 -62 -1030 -29
+    -227 -63 -460 -74 -508 -5 -20 -14 -14 -87 63 -95 101 -169 155 -293 218 -222
+    112 -536 177 -857 177 -110 0 -105 5 -87 -82 24 -116 107 -246 243 -381 39
+    -40 154 -143 254 -230 248 -215 303 -267 377 -361 73 -91 126 -186 148 -266
+    11 -38 17 -130 21 -299 10 -390 39 -660 96 -896 37 -158 77 -263 144 -388 228
+    -425 564 -668 1096 -791 261 -60 567 -37 770 60 l75 36 -90 32 c-210 76 -368
+    179 -541 351 -284 284 -442 571 -490 896 -30 203 -9 483 56 740 31 123 118
+    374 127 365 3 -2 14 -46 25 -98 73 -342 199 -667 339 -878 73 -111 207 -249
+    299 -308 36 -23 99 -56 141 -72 80 -30 159 -52 159 -43 0 3 -18 34 -39 68
+    -192 303 -290 575 -309 849 -8 122 1 385 18 491 26 167 118 464 140 450 4 -3
+    11 -26 15 -51 10 -68 62 -238 97 -319 41 -94 103 -188 178 -270 84 -93 146
+    -220 168 -346 8 -43 9 -41 86 191 43 129 93 276 111 325 74 199 90 359 101
+    995 4 223 9 413 13 422 9 24 278 -469 329 -602 74 -194 104 -304 122 -443 20
+    -152 -7 -278 -126 -595 -103 -272 -120 -425 -59 -519 16 -24 16 -24 139 144
+    68 92 154 202 191 243 180 199 314 421 356 590 12 47 23 87 24 88 2 2 13 -27
+    25 -65 28 -86 39 -319 21 -444 -28 -196 -72 -327 -216 -652 -53 -121 -95 -220
+    -93 -222 2 -1 118 109 258 245 140 137 256 247 258 245 9 -8 -33 -191 -66
+    -290 -141 -428 -579 -978 -1002 -1259 -101 -68 -261 -151 -347 -181 -29 -11
+    -53 -22 -53 -25 0 -7 263 -91 355 -114 316 -77 735 -66 1062 28 411 119 715
+    321 1012 676 403 481 633 920 711 1357 6 33 15 131 20 215 10 162 3 129 135
+    636 83 317 116 601 97 824 -7 73 -16 146 -20 162 -8 29 -9 28 -57 -50 -190
+    -307 -487 -740 -650 -944 -100 -125 -232 -270 -246 -270 -5 0 -9 138 -9 323 0
+    274 4 355 25 547 22 197 25 270 25 588 0 497 -17 629 -101 801 -43 87 -139
+    196 -206 233 l-31 18 34 -68 c48 -97 64 -170 64 -293 0 -213 -89 -461 -277
+    -772 -36 -59 -70 -110 -74 -113 -5 -3 -9 163 -9 368 -1 588 -41 898 -171 1293
+    -163 497 -534 971 -878 1121 -115 51 -116 50 -55 -68 66 -130 128 -314 149
+    -443 14 -87 15 -140 7 -405 -5 -168 -14 -315 -19 -328 -7 -18 -23 24 -86 225
+    -42 136 -123 397 -180 578 l-103 330 -80 120 c-321 481 -553 1008 -692 1572
+    -26 106 -51 193 -56 193 -4 0 -35 -27 -67 -60z"></path></g></svg><br>
+                                            {!! $nav_menu->getTranslation('fire', 'en') !!}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <!-- End Sub Column -->
+
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}">
+                                        <a href="{{route('security_elv', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}">
+                                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 700.000000 716.000000" preserveAspectRatio="xMidYMid meet">
+                                                <g transform="translate(0.000000,716.000000) scale(0.100000,-0.100000)" fill="#ffbf00" stroke="none">
+                                                    <path d="M1720 5528 c-60 -31 -87 -74 -95 -151 -3 -34 -5 -271 -3 -527 3 -453
+    4 -467 25 -524 13 -33 34 -76 47 -97 23 -34 551 -546 723 -700 40 -37 71 -73
+    72 -84 0 -11 -11 -45 -26 -75 -25 -51 -28 -65 -28 -176 l0 -121 39 -75 c30
+    -59 37 -82 32 -104 -7 -28 -70 -133 -388 -649 -101 -165 -207 -338 -234 -385
+    l-50 -85 -289 0 -290 0 -5 255 c-5 268 -6 275 -55 320 l-27 25 -534 0 -534 0
+    -25 -26 c-15 -14 -30 -43 -35 -65 -5 -21 -10 -182 -10 -356 l0 -318 959 0
+    c527 0 979 3 1005 6 46 7 46 7 93 93 69 128 215 371 408 681 94 151 186 302
+    205 335 18 33 38 63 42 66 5 3 39 6 74 7 88 1 116 8 204 52 l76 38 294 -276
+    c405 -379 514 -476 590 -526 124 -82 100 -79 610 -87 250 -4 823 -8 1274 -8
+    l818 -1 58 31 c110 58 110 59 195 878 l45 433 0 568 c0 532 -1 568 -17 573
+    -10 2 -112 32 -228 66 -614 181 -3361 962 -3470 987 -60 14 -172 17 -785 21
+    l-715 4 -45 -23z m4834 -1377 c49 -12 93 -54 109 -106 9 -30 12 -238 12 -860
+    0 -859 -1 -881 -43 -929 -49 -54 15 -51 -1184 -54 l-1107 -3 -35 31 c-19 17
+    -46 48 -58 68 l-23 37 0 841 0 841 24 50 c27 59 48 73 128 83 84 11 2130 11
+    2177 1z"></path><path d="M5330 3966 c-329 -70 -561 -289 -641 -606 -29 -112 -23 -310 11 -410
+    91 -267 309 -477 570 -547 90 -24 309 -24 400 1 151 41 305 142 415 274 72 86
+    140 224 160 324 31 155 10 369 -48 500 -76 170 -227 319 -404 400 -143 65
+    -334 91 -463 64z m310 -171 c102 -27 180 -74 271 -165 70 -70 94 -102 128
+    -172 79 -163 90 -313 35 -478 -87 -260 -329 -440 -599 -443 -102 -1 -172 13
+    -262 53 -182 82 -319 242 -367 427 -20 78 -21 240 -1 318 52 204 228 391 429
+    455 100 32 258 34 366 5z"></path><path d="M5362 3619 c-121 -23 -260 -134 -318 -254 -26 -54 -29 -72 -32 -175
+    -3 -99 -1 -123 18 -169 43 -109 137 -213 238 -263 106 -53 277 -51 387 4 118
+    59 198 155 236 280 17 55 21 88 17 158 -4 77 -9 98 -42 165 -96 194 -296 295
+    -504 254z m325 -214 c108 -64 140 -238 53 -285 -23 -12 -81 9 -119 43 -34 32
+    -71 115 -71 163 0 32 7 49 29 73 35 38 51 38 108 6z"></path></g></svg><br>
+                                            {!! $nav_menu->getTranslation('security', 'en') !!}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <!-- End Sub Column -->
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}">
+                                        <a href="{{route('water_treat', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}">
+                                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                 width="50px" height="50px" viewBox="0 0 500.000000 500.000000"
+                                                 preserveAspectRatio="xMidYMid meet">
+                                                <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                                                   fill="#0f5e9c" stroke="none">
+                                                    <path d="M2490 4983 c-94 -65 -362 -340 -502 -514 -108 -135 -304 -415 -338
+    -484 -8 -17 -22 -41 -31 -55 -82 -126 -244 -507 -299 -705 -74 -267 -100 -415
+    -121 -693 -16 -219 -1 -375 56 -562 23 -76 108 -250 160 -329 64 -96 194 -238
+    280 -304 148 -115 299 -186 530 -248 69 -19 468 -19 545 -1 190 47 387 137
+    504 232 39 31 171 150 181 162 6 7 31 38 56 68 125 150 212 327 260 530 17 73
+    20 120 20 335 1 332 -21 493 -107 800 -28 103 -83 266 -124 370 -45 115 -172
+    369 -265 530 -61 106 -222 335 -318 455 -135 167 -153 187 -284 318 -98 97
+    -118 112 -146 112 -18 0 -44 -8 -57 -17z m873 -2451 c9 -8 22 -31 28 -51 9
+    -31 6 -48 -21 -126 -168 -476 -436 -724 -877 -814 -110 -23 -235 -27 -280 -10
+    -40 15 -84 69 -81 99 5 44 58 62 276 89 194 25 388 121 547 272 83 79 118 139
+    175 297 68 189 98 244 144 262 26 10 65 2 89 -18z"/>
+                                                    <path d="M3630 1183 c-28 -36 -20 -79 26 -139 49 -65 46 -93 -16 -155 -53 -53
+    -174 -118 -271 -145 -30 -9 -85 -25 -124 -35 -313 -90 -906 -107 -1325 -39
+    -238 38 -480 132 -574 222 -44 42 -48 50 -43 81 3 18 19 55 36 82 36 57 39 83
+    10 119 -46 58 -134 20 -184 -79 -61 -122 -31 -243 85 -347 57 -52 196 -125
+    297 -157 158 -50 379 -97 533 -112 146 -14 719 -14 847 1 226 26 502 95 643
+    162 188 89 276 183 288 309 15 159 -152 329 -228 232z"/>
+                                                    <path d="M4433 1135 c-44 -31 -38 -93 17 -155 116 -131 119 -231 12 -344 -158
+    -165 -561 -320 -1037 -396 -387 -62 -434 -65 -935 -65 -455 0 -492 2 -768 41
+    -615 87 -1009 230 -1199 437 -55 59 -73 97 -73 150 0 44 18 77 105 196 30 41
+    32 70 4 105 -16 20 -29 26 -60 26 -34 0 -45 -7 -94 -56 -30 -31 -69 -85 -86
+    -120 -31 -62 -31 -67 -27 -166 7 -126 27 -168 132 -274 211 -211 632 -373
+    1176 -454 332 -49 415 -54 880 -54 466 0 601 8 910 54 659 98 1155 328 1285
+    595 25 50 27 62 23 157 -4 129 -24 176 -119 271 -72 72 -102 83 -146 52z"/>
+                                                </g>
+                                            </svg><br>
+                                            {!! $nav_menu->getTranslation('water', 'en') !!}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <!-- End Sub Column -->
+
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}">
+                                        <a href="{{route('facility_manage', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}">
+                                            <svg version="1.1" id="Capa_1" fill="green" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 width="50px" height="50px" viewBox="0 0 481.763 481.763" style="enable-background:new 0 0 481.763 481.763;"
+                                                 xml:space="preserve"><g><path d="M453.584,405.715L298.332,250.457c-1.454-1.46-3.009-2.755-4.61-3.967l27.497-28.954c1.406-1.416,2.736-2.905,3.96-4.436
+            c36.505,13.77,79.34,6.029,108.682-23.309c21.402-21.409,32.195-51.013,29.583-81.226c-0.283-3.419-2.548-6.375-5.769-7.542
+            c-3.228-1.179-6.845-0.375-9.274,2.045l-49.757,49.754l-50.377-12.699l-14.287-51.967l49.745-49.748
+            c2.441-2.433,3.239-6.053,2.063-9.277c-1.171-3.233-4.126-5.479-7.555-5.78c-30.21-2.604-59.816,8.183-81.226,29.592
+            c-29.317,29.317-37.078,72.129-23.323,108.619c-1.496,1.265-2.985,2.61-4.445,4.049l-40.471,38.869l-74.319-74.312
+            c-0.928-0.931-1.918-1.75-2.938-2.519c0.872-1.53,1.72-3.105,2.512-4.74c15.696,3.021,44.39-27.544,68.76-51.905L151.787,0
+            c-31.747,31.752-54.929,53.061-51.92,68.757c-7.258,3.546-13.728,7.882-18.326,12.486l-10.001,9.998
+            c-6.493,6.502-10.409,14.588-11.807,23.014c-0.97,1.108-1.957,2.275-2.938,3.523l-3.727,4.684
+            c-0.104,0.115-0.425,0.576-0.514,0.694l-3.378,4.729c-2.113,2.819-3.96,5.881-5.746,8.836c-0.659,1.097-1.33,2.196-2.015,3.292
+            c-0.109,0.189-0.216,0.375-0.313,0.562l-1.501,2.828c-1.814,3.402-3.697,6.924-5.308,10.799l-0.26,0.617
+            c-1.9,4.513-3.869,9.186-5.243,14.139l-0.665,2.143c-0.544,1.762-1.097,3.52-1.605,5.621l-1.38,6.833
+            c-1.029,4.273-1.375,8.488-1.676,12.221l-0.201,2.453c-0.508,3.871-0.36,7.521-0.222,10.742c0.047,1.079,0.089,2.137,0.121,3.564
+            c0.036,0.594,0.042,1.173,0.06,1.744c0.035,1.439,0.074,3.074,0.352,4.793l0.866,5.545c0.186,1.072,0.343,2.113,0.491,3.111
+            c0.331,2.252,0.671,4.581,1.342,6.792l3.632,12.602c1.12,3.83,4.758,6.366,8.739,6.088c2.107-0.147,4.001-1.058,5.411-2.471
+            c1.259-1.259,2.131-2.914,2.397-4.781l1.883-12.812c0.139-1.017,0.576-2.506,1.028-4.082c0.322-1.093,0.635-2.208,0.877-3.159
+            l1.339-4.782c0.163-0.647,0.479-1.277,0.757-1.924c0.266-0.6,0.532-1.218,0.769-1.827c0.449-1.017,0.872-2.033,1.288-3.076
+            c0.825-2.045,1.605-3.969,2.796-5.858c0.518-0.872,0.999-1.738,1.49-2.622c1.241-2.222,2.42-4.32,3.821-6.059
+            c0.088-0.103,0.168-0.218,0.26-0.34l3.159-4.356c0.647-0.819,1.374-1.593,2.081-2.373c0.502-0.55,1.005-1.103,1.64-1.83
+            c1.865-2.243,4.055-4.199,6.168-6.124l1.132-1.017c1.566-1.454,3.378-2.822,5.284-4.268c0.78-0.583,1.543-1.162,2.293-1.732
+            c0.963-0.624,1.895-1.247,2.813-1.865c1.72-1.162,3.209-2.167,4.93-3.062l3.745-2.131l3.789-1.858
+            c1.321-0.683,2.622-1.209,3.821-1.693c0.712-0.296,1.416-0.583,2.069-0.866c0.665-0.23,1.306-0.479,1.912-0.703
+            c0.812-0.296,1.513-0.58,2.465-0.828l1.022-0.23c1.114,1.803,2.42,3.517,3.987,5.083l73.515,73.518L31.647,393.822
+            c-0.062,0.059-0.121,0.124-0.178,0.178c-19.529,19.529-22.709,48.131-3.177,67.666c19.532,19.529,46.316,14.522,65.84-5
+            c0.086-0.083,0.16-0.16,0.236-0.249l138.448-145.782c0.812,0.957,1.616,1.92,2.518,2.824l155.24,155.253
+            c17.396,17.401,45.613,17.401,63.009,0C470.974,451.322,470.974,423.104,453.584,405.715z M73.871,440.564
+            c-7.191,7.199-18.855,7.199-26.052,0c-7.19-7.193-7.19-18.85,0-26.043c7.19-7.188,18.855-7.193,26.052,0
+            C81.055,421.715,81.055,433.371,73.871,440.564z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg><br>
+                                            {!! $nav_menu->getTranslation('facility', 'en') !!}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <!-- End Sub Column -->
+                        </ul>
+                        <!-- End Sub Multilevel -->
+                    </li>
+                    <!-- End Item With Sub -->
+                    <!-- Item With Sub -->
+                    <li class="{{ Route::currentRouteName() === 'project' ? 'active' : '' }}">
+                        <a class="{{ Route::currentRouteName() === 'project' ? 'active' : '' }}" href="{{route('project', app()->getLocale())}}">
+                            {{$nav_menu->getTranslation('projects', 'en')}}
+                        </a>
+                    </li>
+                    <!-- End Item With Sub -->
+                    <!-- Item With Sub -->
+                    <li>
+                        <a href="#" class="mn-has-sub
+                         {{ Route::currentRouteName() === 'news_events' ? 'active' : '' }}
+                         {{ Route::currentRouteName() === 'news_single' ? 'active' : '' }}
+                         {{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}
+                            ">
+                            {{$nav_menu->getTranslation('insights', 'en')}}
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <!-- Sub Multilevel -->
+                        <ul class="mn-sub mn-has-multi">
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li>
+                                        <a href="{{route('news_events', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'news_events' ? 'active' : '' }} {{ Route::currentRouteName() === 'news_single' ? 'active' : '' }}">
+                                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                 width="50px" height="50px" viewBox="0 0 840.000000 859.000000"
+                                                 preserveAspectRatio="xMidYMid meet">
+                                                <g transform="translate(0.000000,859.000000) scale(0.100000,-0.100000)"
+                                                   fill="#337DFF" stroke="none">
+                                                    <path d="M2205 8443 c-337 -42 -623 -125 -887 -260 l-93 -47 47 -7 c107 -16
+    237 -103 288 -192 16 -28 42 -82 56 -119 l26 -68 60 31 c81 41 270 103 393
+    129 131 28 412 38 563 20 493 -58 951 -313 1262 -701 689 -861 502 -2113 -412
+    -2746 -192 -133 -456 -245 -691 -293 -525 -107 -1070 16 -1507 341 -442 327
+    -731 860 -757 1397 -5 104 -4 122 9 122 12 0 16 22 21 113 13 247 84 466 201
+    625 42 56 49 62 64 50 9 -7 73 -60 142 -119 138 -116 157 -129 193 -129 43 0
+    67 30 82 100 42 202 69 612 59 880 -7 164 -18 211 -57 232 -32 17 -397 22
+    -617 9 -303 -18 -530 -51 -561 -82 -28 -28 -26 -113 2 -137 59 -48 289 -255
+    289 -260 0 -4 -18 -40 -39 -82 -135 -260 -258 -660 -292 -954 -17 -145 -6
+    -510 20 -646 73 -397 217 -727 456 -1045 471 -627 1228 -991 2000 -962 347 14
+    649 90 960 242 265 130 469 279 680 496 360 371 583 821 662 1339 24 157 24
+    501 0 655 -108 698 -481 1285 -1064 1675 -322 215 -684 348 -1055 389 -90 10
+    -434 13 -503 4z"/><path d="M6332 7792 c-76 -28 -122 -69 -162 -147 l-35 -68 0 -566 c0 -517 2
+    -570 18 -610 27 -68 80 -126 145 -158 51 -25 68 -28 157 -28 84 0 107 4 146
+    23 66 32 125 96 149 160 20 53 21 73 18 626 -3 558 -3 572 -24 617 -27 59 -79
+    110 -140 140 -67 32 -197 37 -272 11z"/><path d="M3305 7160 c-11 -4 -151 -131 -311 -281 -160 -151 -342 -322 -405
+    -380 l-114 -107 -80 1 c-112 1 -176 -22 -241 -87 -74 -75 -97 -141 -92 -267 3
+    -87 7 -103 42 -174 27 -55 47 -82 71 -96 40 -24 35 8 76 -474 18 -203 38 -384
+    45 -402 26 -66 152 -91 226 -45 77 48 77 44 105 508 l25 415 34 50 c46 69 76
+    168 73 247 l-2 63 359 415 c197 228 364 427 371 442 28 63 7 139 -47 167 -31
+    16 -102 19 -135 5z"/><path d="M4926 7133 c179 -418 255 -794 240 -1193 -8 -241 -42 -447 -102 -622
+    -12 -38 -20 -69 -16 -69 4 -1 610 -2 1347 -3 l1340 -1 3 -2085 c2 -1465 -1
+    -2104 -8 -2149 -6 -35 -19 -80 -30 -100 -26 -52 -97 -115 -156 -137 -48 -19
+    -122 -19 -3009 -19 -2442 0 -2968 2 -3006 13 -71 21 -139 78 -174 147 l-30 59
+    -5 1301 -5 1302 -110 58 c-60 31 -154 86 -208 121 -105 69 -283 199 -292 215
+    -4 5 -10 9 -16 9 -5 0 -9 -568 -9 -1497 0 -1433 1 -1502 19 -1590 36 -175 113
+    -321 238 -453 114 -121 230 -196 378 -247 165 -56 -14 -53 3210 -53 3214 0
+    3048 -3 3208 51 72 24 184 79 243 120 211 145 364 404 394 667 6 56 10 1020
+    10 2687 0 2797 2 2702 -50 2856 -106 313 -354 541 -681 625 -47 12 -127 18
+    -306 21 l-243 5 -2 -93 c-1 -52 -2 -213 -3 -359 -2 -293 -8 -344 -60 -455
+    -108 -234 -328 -375 -584 -375 -107 0 -182 18 -286 69 -149 74 -267 211 -322
+    374 l-27 82 -4 378 -3 377 -450 0 -449 0 16 -37z"/><path d="M4850 4280 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/><path d="M6130 4280 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                    <path d="M2280 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                    <path d="M3565 3307 c-3 -7 -4 -149 -3 -317 l3 -305 323 -3 322 -2 0 320 0320 -320 0 c-249 0 -322 -3 -325 -13z"/>
+                                                    <path d="M4850 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                    <path d="M6130 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                    <path d="M2287 2033 c-4 -3 -7 -150 -7 -325 l0 -318 320 0 320 0 0 325 0 325-313 0 c-173 0 -317 -3 -320 -7z"/>
+                                                    <path d="M3565 2028 c-3 -7 -4 -153 -3 -323 l3 -310 320 0 320 0 0 320 0 320-318 3 c-250 2 -319 0 -322 -10z"/>
+                                                    <path d="M4850 1715 l0 -325 320 0 320 0 0 325 0 325 -320 0 -320 0 0 -325z"/>
+                                                    <path d="M6135 2027 c-3 -7 -4 -152 -3 -322 l3 -310 318 -3 317 -2 0 325 0325 -315 0 c-245 0 -317 -3 -320 -13z"/>
+                                                </g>
+                                            </svg><br>
+                                            {{$nav_menu->getTranslation('news', 'en')}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- End Sub Column -->
+                            <!-- Sub Column -->
+                            <li class="mn-sub-multi">
+                                <a class="mn-group-title"></a>
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}">
+                                        <a href="{{route('case_studies', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}">
+                                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                 width="50px" height="50px" viewBox="0 0 900.000000 900.000000"
+                                                 preserveAspectRatio="xMidYMid meet">
+                                                <g transform="translate(0.000000,900.000000) scale(0.100000,-0.100000)"
+                                                   fill="#FF333F" stroke="none">
+                                                    <path d="M555 8990 c-275 -5 -292 -6 -336 -28 -70 -34 -125 -87 -169 -161
+    l-40 -67 -7 -3420 -6 -3419 944 -949 944 -949 2115 7 c1163 4 2204 11 2312 15
+    186 8 199 10 241 34 95 56 171 167 192 280 l7 37 -2249 0 -2250 0 -6 806 -6
+    805 -46 74 c-47 76 -84 110 -169 159 l-48 28 -804 6 -804 5 0 3189 0 3188
+    3005 0 3005 0 0 -1870 0 -1870 186 0 186 0 -4 1923 -3 1922 -34 55 c-49 79
+    -97 126 -173 171 l-66 39 -2814 -2 c-1547 -1 -2943 -5 -3103 -8z"/><path d="M5630 6755 l0 -1125 185 0 185 0 0 1125 0 1125 -185 0 -185 0 0-1125z"/><path d="M1580 7829 c-308 -92 -559 -300 -700 -579 -35 -70 -100 -252 -100-282 0 -17 23 -18 455 -18 l455 0 0 449 c0 248 -3 452 -7 454 -5 3 -51 -8-103 -24z"/><path d="M2091 7809 c-7 -22 -11 -188 -11 -508 l0 -476 355 -355 356 -355 19
+    25 c35 45 120 223 135 285 40 159 45 460 10 615 -34 152 -144 346 -270 479
+    -124 131 -230 201 -418 277 -134 54 -161 56 -176 13z"/><path d="M4890 6560 l0 -930 175 0 175 0 0 930 0 930 -175 0 -175 0 0 -930z"/><path d="M4130 6190 l0 -560 185 0 185 0 0 560 0 560 -185 0 -185 0 0 -560z"/><path d="M784 6545 c-7 -18 58 -218 93 -290 103 -207 286 -390 498 -497 152
+    -77 268 -107 450 -115 148 -7 270 8 390 48 97 33 287 127 292 145 2 7 -154
+    172 -348 368 l-351 356 -509 0 c-443 0 -510 -2 -515 -15z"/><path d="M3380 6000 l0 -370 185 0 185 0 -2 368 -3 367 -182 3 -183 2 0 -370z"/><path d="M1130 4315 l0 -185 1308 2 1307 3 3 183 2 182 -1310 0 -1310 0 0-185z"/><path d="M6127 4489 c-310 -30 -682 -178 -912 -362 -124 -100 -334 -322 -405
+    -429 -347 -524 -395 -1196 -125 -1765 242 -510 709 -878 1246 -982 412 -79
+    822 -27 1173 148 l113 57 474 -468 c261 -258 514 -505 564 -549 117 -103 164
+    -123 300 -123 87 0 109 4 169 28 126 53 224 170 261 311 20 80 19 130 -6 211
+    -35 113 -17 93 -578 659 -240 242 -462 467 -494 501 l-57 61 59 124 c120 252
+    169 452 178 729 21 641 -259 1194 -782 1545 -260 175 -552 276 -875 305 -129
+    11 -177 11 -303 -1z m393 -453 c188 -29 410 -123 581 -247 271 -197 481 -528
+    530 -834 19 -125 17 -443 -5 -540 -33 -150 -125 -357 -218 -491 -53 -77 -255
+    -281 -328 -331 -73 -50 -286 -152 -380 -183 -133 -43 -226 -53 -438 -47 -267
+    8 -387 36 -582 138 -92 48 -168 105 -284 212 -231 212 -353 419 -418 708 -30
+    138 -33 397 -4 529 41 193 112 360 218 519 65 97 251 283 348 348 154 103 323
+    175 499 213 108 23 345 26 481 6z"/><path d="M1130 3565 l0 -185 1310 0 1310 0 -2 183 -3 182 -1307 3 -1308 2 0-185z"/><path d="M1130 2815 l0 -175 1310 0 1310 0 -2 173 -3 172 -1307 3 -1308 2 0-175z"/>
+                                                </g>
+                                            </svg><br>
+                                            {{$nav_menu->getTranslation('case', 'en')}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- End Sub Column -->
+                        </ul>
+                        <!-- End Sub Multilevel -->
+                    </li>
+                    <!-- End Item With Sub -->
+                    <!-- Item With Sub -->
+                    <li class="
+                       {{ Route::currentRouteName() === 'contact' ? 'active' : '' }}
+                       {{ Route::currentRouteName() === 'careers' ? 'active' : '' }}
+                        ">
+                        <a class="
+                        {{ Route::currentRouteName() === 'contact' ? 'active' : '' }}
+                        {{ Route::currentRouteName() === 'careers' ? 'active' : '' }}" href="{{route('contact', app()->getLocale())}}">
+                            {{$nav_menu->getTranslation('contact', 'en')}}
+                        </a>
+                    </li>
+                    <!-- End Item With Sub -->
+                    <!-- Divider -->
+                    <li><a>&nbsp;</a></li>
+                    <!-- End Divider -->
+                    <!-- Search -->
+                    <li>
+                        <a href="#" class="mn-has-sub"><i class="fa fa-search"></i>
+                            {{$nav_menu->getTranslation('search', 'en')}}
+                        </a>
+                        <ul class="mn-sub">
+                            <li>
+                                <div class="mn-wrap">
+                                    <form action="{{route('search_page', app()->getLocale())}}" class="form">
+                                        <div class="search-wrap">
+                                            <input type="text" class="form-control search-field" name="search" value="{{isset($search) ? $search : ''}}" placeholder="Search...">
+                                            <button class="search-button animate" type="submit" title="Start Search">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Search -->
+                    <!--&lt;!&ndash; Languages &ndash;&gt;-->
+                    <li>
+                        <a href="#" class="mn-has-sub">
+                            {{$nav_menu->getTranslation('lang', 'en')}}
+                         <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="mn-sub">
+                            @foreach (config('app.available_locales') as $locale)
+                            <li>
+                                <a href="{{url($locale.'/home')}}" class="@if (app()->getLocale() == $locale) active @endif">
+                                    {{ strtoupper($locale) }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <!-- &lt;!&ndash; End Languages &ndash;&gt;-->
+                </ul>
+            </div>
+            @elseif(app()->getLocale() == 'ar')
+            <div class="inner-nav desktop-nav left">
+                        <ul class="clearlist">
+                            <li class="{{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
+                                <a class="{{ Route::currentRouteName() === 'home' ? 'active' : '' }}" href="{{route('home', app()->getLocale())}}">
+                                    {{$nav_menu->getTranslation('home', 'ar')}}
+                                </a>
+                            </li>
+                            <li class="{{ Route::currentRouteName() === 'about' ? 'active' : '' }}">
+                                <a class="{{ Route::currentRouteName() === 'about' ? 'active' : '' }}" href="{{route('about', app()->getLocale())}}">
+                                    {{$nav_menu->getTranslation('about', 'ar')}}
+                                </a>
+                            </li>
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub
+                         {{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}
+                                    ">
+                                    {{$nav_menu->getTranslation('what_we_do', 'ar')}}
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <!-- Sub Multilevel -->
+                                <ul class="mn-sub mn-has-multi">
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li class="{{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}">
+                                                <a href="{{route('fire_safety', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'fire_safety' ? 'active' : '' }}">
+                                                    <svg version="1.0"  xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 700.000000 853.000000" preserveAspectRatio="xMidYMid meet">
+                                                        <g transform="translate(0.000000,853.000000) scale(0.100000,-0.100000)" fill="#e22822" stroke="none">
+                                                            <path d="M3229 8460 c-189 -193 -260 -593 -192 -1087 22 -164 27 -235 27 -413
+    0 -231 -10 -314 -59 -485 -25 -86 -102 -265 -114 -265 -3 1 -29 35 -58 78
+    -121 181 -297 365 -461 482 -76 54 -262 157 -262 145 0 -3 12 -29 26 -58 61
+    -120 133 -340 168 -517 50 -249 61 -587 26 -785 -38 -212 -232 -920 -261 -950
+    -15 -15 -25 3 -62 105 -79 219 -166 362 -301 495 -155 154 -310 234 -559 289
+    -27 6 -24 2 34 -66 155 -180 249 -382 290 -618 36 -209 28 -333 -62 -1030 -29
+    -227 -63 -460 -74 -508 -5 -20 -14 -14 -87 63 -95 101 -169 155 -293 218 -222
+    112 -536 177 -857 177 -110 0 -105 5 -87 -82 24 -116 107 -246 243 -381 39
+    -40 154 -143 254 -230 248 -215 303 -267 377 -361 73 -91 126 -186 148 -266
+    11 -38 17 -130 21 -299 10 -390 39 -660 96 -896 37 -158 77 -263 144 -388 228
+    -425 564 -668 1096 -791 261 -60 567 -37 770 60 l75 36 -90 32 c-210 76 -368
+    179 -541 351 -284 284 -442 571 -490 896 -30 203 -9 483 56 740 31 123 118
+    374 127 365 3 -2 14 -46 25 -98 73 -342 199 -667 339 -878 73 -111 207 -249
+    299 -308 36 -23 99 -56 141 -72 80 -30 159 -52 159 -43 0 3 -18 34 -39 68
+    -192 303 -290 575 -309 849 -8 122 1 385 18 491 26 167 118 464 140 450 4 -3
+    11 -26 15 -51 10 -68 62 -238 97 -319 41 -94 103 -188 178 -270 84 -93 146
+    -220 168 -346 8 -43 9 -41 86 191 43 129 93 276 111 325 74 199 90 359 101
+    995 4 223 9 413 13 422 9 24 278 -469 329 -602 74 -194 104 -304 122 -443 20
+    -152 -7 -278 -126 -595 -103 -272 -120 -425 -59 -519 16 -24 16 -24 139 144
+    68 92 154 202 191 243 180 199 314 421 356 590 12 47 23 87 24 88 2 2 13 -27
+    25 -65 28 -86 39 -319 21 -444 -28 -196 -72 -327 -216 -652 -53 -121 -95 -220
+    -93 -222 2 -1 118 109 258 245 140 137 256 247 258 245 9 -8 -33 -191 -66
+    -290 -141 -428 -579 -978 -1002 -1259 -101 -68 -261 -151 -347 -181 -29 -11
+    -53 -22 -53 -25 0 -7 263 -91 355 -114 316 -77 735 -66 1062 28 411 119 715
+    321 1012 676 403 481 633 920 711 1357 6 33 15 131 20 215 10 162 3 129 135
+    636 83 317 116 601 97 824 -7 73 -16 146 -20 162 -8 29 -9 28 -57 -50 -190
+    -307 -487 -740 -650 -944 -100 -125 -232 -270 -246 -270 -5 0 -9 138 -9 323 0
+    274 4 355 25 547 22 197 25 270 25 588 0 497 -17 629 -101 801 -43 87 -139
+    196 -206 233 l-31 18 34 -68 c48 -97 64 -170 64 -293 0 -213 -89 -461 -277
+    -772 -36 -59 -70 -110 -74 -113 -5 -3 -9 163 -9 368 -1 588 -41 898 -171 1293
+    -163 497 -534 971 -878 1121 -115 51 -116 50 -55 -68 66 -130 128 -314 149
+    -443 14 -87 15 -140 7 -405 -5 -168 -14 -315 -19 -328 -7 -18 -23 24 -86 225
+    -42 136 -123 397 -180 578 l-103 330 -80 120 c-321 481 -553 1008 -692 1572
+    -26 106 -51 193 -56 193 -4 0 -35 -27 -67 -60z"></path></g></svg><br>
+                                                    {{$nav_menu->getTranslation('fire', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <!-- End Sub Column -->
+
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li class="{{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}">
+                                                <a href="{{route('security_elv', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'security_elv' ? 'active' : '' }}">
+                                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 700.000000 716.000000" preserveAspectRatio="xMidYMid meet">
+                                                        <g transform="translate(0.000000,716.000000) scale(0.100000,-0.100000)" fill="#ffbf00" stroke="none">
+                                                            <path d="M1720 5528 c-60 -31 -87 -74 -95 -151 -3 -34 -5 -271 -3 -527 3 -453
+    4 -467 25 -524 13 -33 34 -76 47 -97 23 -34 551 -546 723 -700 40 -37 71 -73
+    72 -84 0 -11 -11 -45 -26 -75 -25 -51 -28 -65 -28 -176 l0 -121 39 -75 c30
+    -59 37 -82 32 -104 -7 -28 -70 -133 -388 -649 -101 -165 -207 -338 -234 -385
+    l-50 -85 -289 0 -290 0 -5 255 c-5 268 -6 275 -55 320 l-27 25 -534 0 -534 0
+    -25 -26 c-15 -14 -30 -43 -35 -65 -5 -21 -10 -182 -10 -356 l0 -318 959 0
+    c527 0 979 3 1005 6 46 7 46 7 93 93 69 128 215 371 408 681 94 151 186 302
+    205 335 18 33 38 63 42 66 5 3 39 6 74 7 88 1 116 8 204 52 l76 38 294 -276
+    c405 -379 514 -476 590 -526 124 -82 100 -79 610 -87 250 -4 823 -8 1274 -8
+    l818 -1 58 31 c110 58 110 59 195 878 l45 433 0 568 c0 532 -1 568 -17 573
+    -10 2 -112 32 -228 66 -614 181 -3361 962 -3470 987 -60 14 -172 17 -785 21
+    l-715 4 -45 -23z m4834 -1377 c49 -12 93 -54 109 -106 9 -30 12 -238 12 -860
+    0 -859 -1 -881 -43 -929 -49 -54 15 -51 -1184 -54 l-1107 -3 -35 31 c-19 17
+    -46 48 -58 68 l-23 37 0 841 0 841 24 50 c27 59 48 73 128 83 84 11 2130 11
+    2177 1z"></path><path d="M5330 3966 c-329 -70 -561 -289 -641 -606 -29 -112 -23 -310 11 -410
+    91 -267 309 -477 570 -547 90 -24 309 -24 400 1 151 41 305 142 415 274 72 86
+    140 224 160 324 31 155 10 369 -48 500 -76 170 -227 319 -404 400 -143 65
+    -334 91 -463 64z m310 -171 c102 -27 180 -74 271 -165 70 -70 94 -102 128
+    -172 79 -163 90 -313 35 -478 -87 -260 -329 -440 -599 -443 -102 -1 -172 13
+    -262 53 -182 82 -319 242 -367 427 -20 78 -21 240 -1 318 52 204 228 391 429
+    455 100 32 258 34 366 5z"></path><path d="M5362 3619 c-121 -23 -260 -134 -318 -254 -26 -54 -29 -72 -32 -175
+    -3 -99 -1 -123 18 -169 43 -109 137 -213 238 -263 106 -53 277 -51 387 4 118
+    59 198 155 236 280 17 55 21 88 17 158 -4 77 -9 98 -42 165 -96 194 -296 295
+    -504 254z m325 -214 c108 -64 140 -238 53 -285 -23 -12 -81 9 -119 43 -34 32
+    -71 115 -71 163 0 32 7 49 29 73 35 38 51 38 108 6z"></path></g></svg><br>
+                                                    {{$nav_menu->getTranslation('security', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <!-- End Sub Column -->
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li class="{{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}">
+                                                <a href="{{route('water_treat', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'water_treat' ? 'active' : '' }}">
+                                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                         width="50px" height="50px" viewBox="0 0 500.000000 500.000000"
+                                                         preserveAspectRatio="xMidYMid meet">
+                                                        <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                                                           fill="#0f5e9c" stroke="none">
+                                                            <path d="M2490 4983 c-94 -65 -362 -340 -502 -514 -108 -135 -304 -415 -338
+    -484 -8 -17 -22 -41 -31 -55 -82 -126 -244 -507 -299 -705 -74 -267 -100 -415
+    -121 -693 -16 -219 -1 -375 56 -562 23 -76 108 -250 160 -329 64 -96 194 -238
+    280 -304 148 -115 299 -186 530 -248 69 -19 468 -19 545 -1 190 47 387 137
+    504 232 39 31 171 150 181 162 6 7 31 38 56 68 125 150 212 327 260 530 17 73
+    20 120 20 335 1 332 -21 493 -107 800 -28 103 -83 266 -124 370 -45 115 -172
+    369 -265 530 -61 106 -222 335 -318 455 -135 167 -153 187 -284 318 -98 97
+    -118 112 -146 112 -18 0 -44 -8 -57 -17z m873 -2451 c9 -8 22 -31 28 -51 9
+    -31 6 -48 -21 -126 -168 -476 -436 -724 -877 -814 -110 -23 -235 -27 -280 -10
+    -40 15 -84 69 -81 99 5 44 58 62 276 89 194 25 388 121 547 272 83 79 118 139
+    175 297 68 189 98 244 144 262 26 10 65 2 89 -18z"/>
+                                                            <path d="M3630 1183 c-28 -36 -20 -79 26 -139 49 -65 46 -93 -16 -155 -53 -53
+    -174 -118 -271 -145 -30 -9 -85 -25 -124 -35 -313 -90 -906 -107 -1325 -39
+    -238 38 -480 132 -574 222 -44 42 -48 50 -43 81 3 18 19 55 36 82 36 57 39 83
+    10 119 -46 58 -134 20 -184 -79 -61 -122 -31 -243 85 -347 57 -52 196 -125
+    297 -157 158 -50 379 -97 533 -112 146 -14 719 -14 847 1 226 26 502 95 643
+    162 188 89 276 183 288 309 15 159 -152 329 -228 232z"/>
+                                                            <path d="M4433 1135 c-44 -31 -38 -93 17 -155 116 -131 119 -231 12 -344 -158
+    -165 -561 -320 -1037 -396 -387 -62 -434 -65 -935 -65 -455 0 -492 2 -768 41
+    -615 87 -1009 230 -1199 437 -55 59 -73 97 -73 150 0 44 18 77 105 196 30 41
+    32 70 4 105 -16 20 -29 26 -60 26 -34 0 -45 -7 -94 -56 -30 -31 -69 -85 -86
+    -120 -31 -62 -31 -67 -27 -166 7 -126 27 -168 132 -274 211 -211 632 -373
+    1176 -454 332 -49 415 -54 880 -54 466 0 601 8 910 54 659 98 1155 328 1285
+    595 25 50 27 62 23 157 -4 129 -24 176 -119 271 -72 72 -102 83 -146 52z"/>
+                                                        </g>
+                                                    </svg><br>
+                                                    {{$nav_menu->getTranslation('water', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <!-- End Sub Column -->
+
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li class="{{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}">
+                                                <a href="{{route('facility_manage', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'facility_manage' ? 'active' : '' }}">
+                                                    <svg version="1.1" id="Capa_1" fill="green" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                         width="50px" height="50px" viewBox="0 0 481.763 481.763" style="enable-background:new 0 0 481.763 481.763;"
+                                                         xml:space="preserve"><g><path d="M453.584,405.715L298.332,250.457c-1.454-1.46-3.009-2.755-4.61-3.967l27.497-28.954c1.406-1.416,2.736-2.905,3.96-4.436
+            c36.505,13.77,79.34,6.029,108.682-23.309c21.402-21.409,32.195-51.013,29.583-81.226c-0.283-3.419-2.548-6.375-5.769-7.542
+            c-3.228-1.179-6.845-0.375-9.274,2.045l-49.757,49.754l-50.377-12.699l-14.287-51.967l49.745-49.748
+            c2.441-2.433,3.239-6.053,2.063-9.277c-1.171-3.233-4.126-5.479-7.555-5.78c-30.21-2.604-59.816,8.183-81.226,29.592
+            c-29.317,29.317-37.078,72.129-23.323,108.619c-1.496,1.265-2.985,2.61-4.445,4.049l-40.471,38.869l-74.319-74.312
+            c-0.928-0.931-1.918-1.75-2.938-2.519c0.872-1.53,1.72-3.105,2.512-4.74c15.696,3.021,44.39-27.544,68.76-51.905L151.787,0
+            c-31.747,31.752-54.929,53.061-51.92,68.757c-7.258,3.546-13.728,7.882-18.326,12.486l-10.001,9.998
+            c-6.493,6.502-10.409,14.588-11.807,23.014c-0.97,1.108-1.957,2.275-2.938,3.523l-3.727,4.684
+            c-0.104,0.115-0.425,0.576-0.514,0.694l-3.378,4.729c-2.113,2.819-3.96,5.881-5.746,8.836c-0.659,1.097-1.33,2.196-2.015,3.292
+            c-0.109,0.189-0.216,0.375-0.313,0.562l-1.501,2.828c-1.814,3.402-3.697,6.924-5.308,10.799l-0.26,0.617
+            c-1.9,4.513-3.869,9.186-5.243,14.139l-0.665,2.143c-0.544,1.762-1.097,3.52-1.605,5.621l-1.38,6.833
+            c-1.029,4.273-1.375,8.488-1.676,12.221l-0.201,2.453c-0.508,3.871-0.36,7.521-0.222,10.742c0.047,1.079,0.089,2.137,0.121,3.564
+            c0.036,0.594,0.042,1.173,0.06,1.744c0.035,1.439,0.074,3.074,0.352,4.793l0.866,5.545c0.186,1.072,0.343,2.113,0.491,3.111
+            c0.331,2.252,0.671,4.581,1.342,6.792l3.632,12.602c1.12,3.83,4.758,6.366,8.739,6.088c2.107-0.147,4.001-1.058,5.411-2.471
+            c1.259-1.259,2.131-2.914,2.397-4.781l1.883-12.812c0.139-1.017,0.576-2.506,1.028-4.082c0.322-1.093,0.635-2.208,0.877-3.159
+            l1.339-4.782c0.163-0.647,0.479-1.277,0.757-1.924c0.266-0.6,0.532-1.218,0.769-1.827c0.449-1.017,0.872-2.033,1.288-3.076
+            c0.825-2.045,1.605-3.969,2.796-5.858c0.518-0.872,0.999-1.738,1.49-2.622c1.241-2.222,2.42-4.32,3.821-6.059
+            c0.088-0.103,0.168-0.218,0.26-0.34l3.159-4.356c0.647-0.819,1.374-1.593,2.081-2.373c0.502-0.55,1.005-1.103,1.64-1.83
+            c1.865-2.243,4.055-4.199,6.168-6.124l1.132-1.017c1.566-1.454,3.378-2.822,5.284-4.268c0.78-0.583,1.543-1.162,2.293-1.732
+            c0.963-0.624,1.895-1.247,2.813-1.865c1.72-1.162,3.209-2.167,4.93-3.062l3.745-2.131l3.789-1.858
+            c1.321-0.683,2.622-1.209,3.821-1.693c0.712-0.296,1.416-0.583,2.069-0.866c0.665-0.23,1.306-0.479,1.912-0.703
+            c0.812-0.296,1.513-0.58,2.465-0.828l1.022-0.23c1.114,1.803,2.42,3.517,3.987,5.083l73.515,73.518L31.647,393.822
+            c-0.062,0.059-0.121,0.124-0.178,0.178c-19.529,19.529-22.709,48.131-3.177,67.666c19.532,19.529,46.316,14.522,65.84-5
+            c0.086-0.083,0.16-0.16,0.236-0.249l138.448-145.782c0.812,0.957,1.616,1.92,2.518,2.824l155.24,155.253
+            c17.396,17.401,45.613,17.401,63.009,0C470.974,451.322,470.974,423.104,453.584,405.715z M73.871,440.564
+            c-7.191,7.199-18.855,7.199-26.052,0c-7.19-7.193-7.19-18.85,0-26.043c7.19-7.188,18.855-7.193,26.052,0
+            C81.055,421.715,81.055,433.371,73.871,440.564z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg><br>
+                                                    {{$nav_menu->getTranslation('facility', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <!-- End Sub Column -->
+                                </ul>
+                                <!-- End Sub Multilevel -->
+                            </li>
+                            <!-- End Item With Sub -->
+                            <!-- Item With Sub -->
+                            <li class="{{ Route::currentRouteName() === 'project' ? 'active' : '' }}">
+                                <a class="{{ Route::currentRouteName() === 'project' ? 'active' : '' }}" href="{{route('project', app()->getLocale())}}">
+                                    {{$nav_menu->getTranslation('projects', 'ar')}}
+                                </a>
+                            </li>
+                            <!-- End Item With Sub -->
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub
+                         {{ Route::currentRouteName() === 'news_events' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'news_single' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}
+                                    ">
+                                    {{$nav_menu->getTranslation('insights', 'ar')}}
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <!-- Sub Multilevel -->
+                                <ul class="mn-sub mn-has-multi">
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{route('news_events', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'news_events' ? 'active' : '' }} {{ Route::currentRouteName() === 'news_single' ? 'active' : '' }}">
+                                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                         width="50px" height="50px" viewBox="0 0 840.000000 859.000000"
+                                                         preserveAspectRatio="xMidYMid meet">
+                                                        <g transform="translate(0.000000,859.000000) scale(0.100000,-0.100000)"
+                                                           fill="#337DFF" stroke="none">
+                                                            <path d="M2205 8443 c-337 -42 -623 -125 -887 -260 l-93 -47 47 -7 c107 -16
+    237 -103 288 -192 16 -28 42 -82 56 -119 l26 -68 60 31 c81 41 270 103 393
+    129 131 28 412 38 563 20 493 -58 951 -313 1262 -701 689 -861 502 -2113 -412
+    -2746 -192 -133 -456 -245 -691 -293 -525 -107 -1070 16 -1507 341 -442 327
+    -731 860 -757 1397 -5 104 -4 122 9 122 12 0 16 22 21 113 13 247 84 466 201
+    625 42 56 49 62 64 50 9 -7 73 -60 142 -119 138 -116 157 -129 193 -129 43 0
+    67 30 82 100 42 202 69 612 59 880 -7 164 -18 211 -57 232 -32 17 -397 22
+    -617 9 -303 -18 -530 -51 -561 -82 -28 -28 -26 -113 2 -137 59 -48 289 -255
+    289 -260 0 -4 -18 -40 -39 -82 -135 -260 -258 -660 -292 -954 -17 -145 -6
+    -510 20 -646 73 -397 217 -727 456 -1045 471 -627 1228 -991 2000 -962 347 14
+    649 90 960 242 265 130 469 279 680 496 360 371 583 821 662 1339 24 157 24
+    501 0 655 -108 698 -481 1285 -1064 1675 -322 215 -684 348 -1055 389 -90 10
+    -434 13 -503 4z"/><path d="M6332 7792 c-76 -28 -122 -69 -162 -147 l-35 -68 0 -566 c0 -517 2
+    -570 18 -610 27 -68 80 -126 145 -158 51 -25 68 -28 157 -28 84 0 107 4 146
+    23 66 32 125 96 149 160 20 53 21 73 18 626 -3 558 -3 572 -24 617 -27 59 -79
+    110 -140 140 -67 32 -197 37 -272 11z"/><path d="M3305 7160 c-11 -4 -151 -131 -311 -281 -160 -151 -342 -322 -405
+    -380 l-114 -107 -80 1 c-112 1 -176 -22 -241 -87 -74 -75 -97 -141 -92 -267 3
+    -87 7 -103 42 -174 27 -55 47 -82 71 -96 40 -24 35 8 76 -474 18 -203 38 -384
+    45 -402 26 -66 152 -91 226 -45 77 48 77 44 105 508 l25 415 34 50 c46 69 76
+    168 73 247 l-2 63 359 415 c197 228 364 427 371 442 28 63 7 139 -47 167 -31
+    16 -102 19 -135 5z"/><path d="M4926 7133 c179 -418 255 -794 240 -1193 -8 -241 -42 -447 -102 -622
+    -12 -38 -20 -69 -16 -69 4 -1 610 -2 1347 -3 l1340 -1 3 -2085 c2 -1465 -1
+    -2104 -8 -2149 -6 -35 -19 -80 -30 -100 -26 -52 -97 -115 -156 -137 -48 -19
+    -122 -19 -3009 -19 -2442 0 -2968 2 -3006 13 -71 21 -139 78 -174 147 l-30 59
+    -5 1301 -5 1302 -110 58 c-60 31 -154 86 -208 121 -105 69 -283 199 -292 215
+    -4 5 -10 9 -16 9 -5 0 -9 -568 -9 -1497 0 -1433 1 -1502 19 -1590 36 -175 113
+    -321 238 -453 114 -121 230 -196 378 -247 165 -56 -14 -53 3210 -53 3214 0
+    3048 -3 3208 51 72 24 184 79 243 120 211 145 364 404 394 667 6 56 10 1020
+    10 2687 0 2797 2 2702 -50 2856 -106 313 -354 541 -681 625 -47 12 -127 18
+    -306 21 l-243 5 -2 -93 c-1 -52 -2 -213 -3 -359 -2 -293 -8 -344 -60 -455
+    -108 -234 -328 -375 -584 -375 -107 0 -182 18 -286 69 -149 74 -267 211 -322
+    374 l-27 82 -4 378 -3 377 -450 0 -449 0 16 -37z"/><path d="M4850 4280 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/><path d="M6130 4280 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                            <path d="M2280 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                            <path d="M3565 3307 c-3 -7 -4 -149 -3 -317 l3 -305 323 -3 322 -2 0 320 0320 -320 0 c-249 0 -322 -3 -325 -13z"/>
+                                                            <path d="M4850 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                            <path d="M6130 3000 l0 -320 320 0 320 0 0 320 0 320 -320 0 -320 0 0 -320z"/>
+                                                            <path d="M2287 2033 c-4 -3 -7 -150 -7 -325 l0 -318 320 0 320 0 0 325 0 325-313 0 c-173 0 -317 -3 -320 -7z"/>
+                                                            <path d="M3565 2028 c-3 -7 -4 -153 -3 -323 l3 -310 320 0 320 0 0 320 0 320-318 3 c-250 2 -319 0 -322 -10z"/>
+                                                            <path d="M4850 1715 l0 -325 320 0 320 0 0 325 0 325 -320 0 -320 0 0 -325z"/>
+                                                            <path d="M6135 2027 c-3 -7 -4 -152 -3 -322 l3 -310 318 -3 317 -2 0 325 0325 -315 0 c-245 0 -317 -3 -320 -13z"/>
+                                                        </g>
+                                                    </svg><br>
+                                                    {{$nav_menu->getTranslation('news', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- End Sub Column -->
+                                    <!-- Sub Column -->
+                                    <li class="mn-sub-multi">
+                                        <a class="mn-group-title"></a>
+                                        <ul>
+                                            <li class="{{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}">
+                                                <a href="{{route('case_studies', app()->getLocale())}}" class="icon-menu-svg {{ Route::currentRouteName() === 'case_studies' ? 'active' : '' }}">
+                                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                         width="50px" height="50px" viewBox="0 0 900.000000 900.000000"
+                                                         preserveAspectRatio="xMidYMid meet">
+                                                        <g transform="translate(0.000000,900.000000) scale(0.100000,-0.100000)"
+                                                           fill="#FF333F" stroke="none">
+                                                            <path d="M555 8990 c-275 -5 -292 -6 -336 -28 -70 -34 -125 -87 -169 -161
+    l-40 -67 -7 -3420 -6 -3419 944 -949 944 -949 2115 7 c1163 4 2204 11 2312 15
+    186 8 199 10 241 34 95 56 171 167 192 280 l7 37 -2249 0 -2250 0 -6 806 -6
+    805 -46 74 c-47 76 -84 110 -169 159 l-48 28 -804 6 -804 5 0 3189 0 3188
+    3005 0 3005 0 0 -1870 0 -1870 186 0 186 0 -4 1923 -3 1922 -34 55 c-49 79
+    -97 126 -173 171 l-66 39 -2814 -2 c-1547 -1 -2943 -5 -3103 -8z"/><path d="M5630 6755 l0 -1125 185 0 185 0 0 1125 0 1125 -185 0 -185 0 0-1125z"/><path d="M1580 7829 c-308 -92 -559 -300 -700 -579 -35 -70 -100 -252 -100-282 0 -17 23 -18 455 -18 l455 0 0 449 c0 248 -3 452 -7 454 -5 3 -51 -8-103 -24z"/><path d="M2091 7809 c-7 -22 -11 -188 -11 -508 l0 -476 355 -355 356 -355 19
+    25 c35 45 120 223 135 285 40 159 45 460 10 615 -34 152 -144 346 -270 479
+    -124 131 -230 201 -418 277 -134 54 -161 56 -176 13z"/><path d="M4890 6560 l0 -930 175 0 175 0 0 930 0 930 -175 0 -175 0 0 -930z"/><path d="M4130 6190 l0 -560 185 0 185 0 0 560 0 560 -185 0 -185 0 0 -560z"/><path d="M784 6545 c-7 -18 58 -218 93 -290 103 -207 286 -390 498 -497 152
+    -77 268 -107 450 -115 148 -7 270 8 390 48 97 33 287 127 292 145 2 7 -154
+    172 -348 368 l-351 356 -509 0 c-443 0 -510 -2 -515 -15z"/><path d="M3380 6000 l0 -370 185 0 185 0 -2 368 -3 367 -182 3 -183 2 0 -370z"/><path d="M1130 4315 l0 -185 1308 2 1307 3 3 183 2 182 -1310 0 -1310 0 0-185z"/><path d="M6127 4489 c-310 -30 -682 -178 -912 -362 -124 -100 -334 -322 -405
+    -429 -347 -524 -395 -1196 -125 -1765 242 -510 709 -878 1246 -982 412 -79
+    822 -27 1173 148 l113 57 474 -468 c261 -258 514 -505 564 -549 117 -103 164
+    -123 300 -123 87 0 109 4 169 28 126 53 224 170 261 311 20 80 19 130 -6 211
+    -35 113 -17 93 -578 659 -240 242 -462 467 -494 501 l-57 61 59 124 c120 252
+    169 452 178 729 21 641 -259 1194 -782 1545 -260 175 -552 276 -875 305 -129
+    11 -177 11 -303 -1z m393 -453 c188 -29 410 -123 581 -247 271 -197 481 -528
+    530 -834 19 -125 17 -443 -5 -540 -33 -150 -125 -357 -218 -491 -53 -77 -255
+    -281 -328 -331 -73 -50 -286 -152 -380 -183 -133 -43 -226 -53 -438 -47 -267
+    8 -387 36 -582 138 -92 48 -168 105 -284 212 -231 212 -353 419 -418 708 -30
+    138 -33 397 -4 529 41 193 112 360 218 519 65 97 251 283 348 348 154 103 323
+    175 499 213 108 23 345 26 481 6z"/><path d="M1130 3565 l0 -185 1310 0 1310 0 -2 183 -3 182 -1307 3 -1308 2 0-185z"/><path d="M1130 2815 l0 -175 1310 0 1310 0 -2 173 -3 172 -1307 3 -1308 2 0-175z"/>
+                                                        </g>
+                                                    </svg><br>
+                                                    {{$nav_menu->getTranslation('case', 'ar')}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- End Sub Column -->
+                                </ul>
+                                <!-- End Sub Multilevel -->
+                            </li>
+                            <!-- End Item With Sub -->
+                            <!-- Item With Sub -->
+                            <li class="
+                            {{ Route::currentRouteName() === 'contact' ? 'active' : '' }}
+                            {{ Route::currentRouteName() === 'careers' ? 'active' : '' }}
+                                ">
+                                <a class="
+                                {{ Route::currentRouteName() === 'contact' ? 'active' : '' }}
+                                {{ Route::currentRouteName() === 'careers' ? 'active' : '' }}" href="{{route('contact', app()->getLocale())}}">
+                                    {{$nav_menu->getTranslation('contact', 'ar')}}
+                                </a>
+                            </li>
+                            <!-- End Item With Sub -->
+                            <!-- Divider -->
+                            <li><a>&nbsp;</a></li>
+                            <!-- End Divider -->
+                            <!-- Search -->
+                            <li>
+                                <a href="#" class="mn-has-sub"><i class="fa fa-search"></i>
+                                    {{$nav_menu->getTranslation('search', 'ar')}}
+                                </a>
+                                <ul class="mn-sub">
+                                    <li>
+                                        <div class="mn-wrap">
+                                            <form action="{{route('search_page', app()->getLocale())}}" class="form">
+                                                <div class="search-wrap">
+                                                    <input type="text" class="form-control search-field" value="{{isset($search) ? $search : ''}}" placeholder="Search...">
+                                                    <button class="search-button animate" type="submit" title="Start Search">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- End Search -->
+                            <!--&lt;!&ndash; Languages &ndash;&gt;-->
+                            <li>
+                                <a href="#" class="mn-has-sub">
+                                    {{$nav_menu->getTranslation('lang', 'ar')}}
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="mn-sub">
+                                    @foreach (config('app.available_locales') as $locale)
+                                        <li>
+                                            <a href="{{url($locale.'/home')}}" class="@if (app()->getLocale() == $locale) active @endif">
+                                                {{ strtoupper($locale) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <!-- &lt;!&ndash; End Languages &ndash;&gt;-->
+                        </ul>
+                    </div>
+            @endif
+        @endif
+        @endforeach
+        <!-- End Main Menu -->
     </div>
-    <div class="navbar-spacer hidden-sm hidden-xs"></div>
-    <div class="menu-lang right-boxed hidden-xs float-right mr-5" style="margin-right: 4%!important;">
-{{--        @foreach (config('app.available_locales') as $locale)--}}
-{{--            <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"--}}
-{{--               class=" @if (app()->getLocale() == $locale) active @endif">{{ strtoupper($locale) }}</a>--}}
-{{--        @endforeach--}}
-    </div>
-</header>
+</nav>
+<!-- End Navigation panel -->
