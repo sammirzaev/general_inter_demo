@@ -13,11 +13,11 @@
                 <li>
                     <a href="javascript:void(0)">
                         @if(!empty($user->photo->photo))
-                          @if(file_exists(public_path('public/images/'. $user->photo->photo)))
-                           <img src="{{asset('public/images/'. $user->photo->photo)}}" alt="user-img" class="img-circle">
+                          @if(file_exists(public_path('images/'. $user->photo->photo)))
+                           <img src="{{asset('images/'. $user->photo->photo)}}" alt="user-img" class="img-circle">
                           @endif
                         @else
-                            <img src="{{asset('public/assets/admin/assets/images/no-avatar.png')}}" alt="user-img" class="img-circle">
+                            <img src="{{asset('assets/admin/assets/images/no-avatar.png')}}" alt="user-img" class="img-circle">
                         @endif
                         <span>{{$user->name}}
                             @if(Cache::has('user-is-online-' . $user->id))

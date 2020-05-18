@@ -39,6 +39,9 @@
                                 {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Update Job Category', 'id'=>'name']) !!}
                             </div>
                             <div class="form-group col-md-12">
+                                {!! Form::text('name_ar', $category->getTranslation('name', 'ar'),  ['class'=>'form-control', 'placeholder'=>'Update Job Category Ar', 'id'=>'name']) !!}
+                            </div>
+                            <div class="form-group col-md-12">
                                 {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
                             </div>
                             <div class="modal-footer">

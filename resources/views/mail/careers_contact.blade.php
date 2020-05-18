@@ -258,11 +258,9 @@
 																									<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																										<tr>
 																											<td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:28px; line-height:36px; text-align:left;">
-																												Dear Candidate we have recieved your request, we will get in touch with you soon. <br>
-
-                                                                                                                Best Regards, <br>
-                                                                                                                General International Group Team
-
+                                                                                                                <p style="font-size: 16px!important; text-align: justify-all">We have received your request, we will get in touch with you soon. </p>
+                                                                                                                <p style="font-size: 16px!important; margin-top: 10px!important; text-align: left;">Best Regards, </p>
+                                                                                                                <p style="font-size: 16px!important; text-align: left;">GIG Human Resource Team</p>
 																											</td>
 																										</tr>
 																										<tr>
@@ -365,7 +363,7 @@
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td class="text-bottom centered plr-15" style="padding: 20px 30px; color:#898989; font-family:'Quicksand', Arial,sans-serif; font-size:12px; line-height:24px; text-align:center;">
-													If yuo did not hear from use within 2 weeks that means consider you are not shortlisted
+													If you did not hear from us within 2 weeks that means consider you are not shortlisted
 												</td>
 											</tr>
 										</table>

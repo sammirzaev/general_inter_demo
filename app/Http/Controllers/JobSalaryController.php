@@ -39,7 +39,11 @@ class JobSalaryController extends Controller
      */
     public function store(Request $request)
     {
-        JobSalary::create($request->all());
+        $job_salary = new JobSalary;
+        $job_salary->setTranslation('name', 'en', $request->name);
+        $job_salary->setTranslation('name', 'ar', $request->name_ar);
+        $job_salary->is_publish = $request->is_publish;
+        $job_salary->save();
         return redirect('admin/job-salary')->with('success', 'Job Salary has been created successfully');
     }
 
@@ -76,7 +80,11 @@ class JobSalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        JobSalary::whereId($id)->first()->update($request->all());
+        $job_salary = JobSalary::findOrFail($id);
+        $job_salary->setTranslation('name', 'en', $request->name);
+        $job_salary->setTranslation('name', 'ar', $request->name_ar);
+        $job_salary->is_publish = $request->is_publish;
+        $job_salary->update();
         return redirect('admin/job-salary')->with('info', 'Job Salary has been updated successfully');
     }
 

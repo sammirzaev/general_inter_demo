@@ -41,7 +41,8 @@
                                 <thead>
                                 <tr>
                                     <th data-toggle="true"> ID </th>
-                                    <th> Category </th>
+                                    <th> Category En</th>
+                                    <th> Category Ar</th>
                                     <th> Publish </th>
                                     <th data-hide="all"> Created </th>
                                     <th data-hide="all"> Updated </th>
@@ -53,7 +54,8 @@
                                     @foreach($categories as $category)
                                         <tr>
                                             <td>{{$category->id}}</td>
-                                            <td>{{$category->name}}</td>
+                                            <td>{{$category->getTranslation('name', 'en')}}</td>
+                                            <td>{{$category->getTranslation('name', 'ar')}}</td>
                                             <td>
                                             @if($category->is_publish)
                                                 <span class="label label-table label-success">{{$category->is_publish == 1 ? 'Published' : 'Not Published'}}</span>

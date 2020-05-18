@@ -8,33 +8,41 @@
             <div class="modal-body">
                 {!! Form::open(['method'=>'POST', 'action'=>'JobCareersController@store', 'class'=>'', 'files'=>true]) !!}
                 <div class="row">
-                <div class="form-group col-md-6">
-                    {!! Form::select('brand_id', array(''=>'Choose Brand') + $brand, null, ['class'=>'form-control', 'id'=>'brand_id', 'required']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::select('category_id[]', array(''=>'Choose Category') + $categories, null, ['class'=>'form-control', 'id'=>'feature', 'multiple']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::select('type_id', array(''=>'Choose Type') + $type, null, ['class'=>'form-control', 'id'=>'type_id', 'required']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::select('location_id', array(''=>'Choose Location') + $location, null, ['class'=>'form-control', 'id'=>'location_id', 'required']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::select('salary_id', array(''=>'Choose Salary') + $salary, null, ['class'=>'form-control', 'id'=>'salary_id', 'required']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), 0,['class'=>'form-control', 'id'=>'inputStatus']) !!}
-                </div>
-                <div class="form-group col-md-12">
-                    {!! Form::text('job_name', null, ['class'=>'form-control', 'placeholder'=>'Add Job Name', 'id'=>'job_name']) !!}
-                </div>
-                <div class="form-group col-md-12">
-                    {!! Form::text('job_title', null, ['class'=>'form-control', 'placeholder'=>'Add Job Title', 'id'=>'job_title']) !!}
-                </div>
-                <div class="form-group col-md-12">
-                    {!! Form::textarea('job_desc', null, ['class'=>'form-control', 'placeholder'=>'Add Job Description', 'id'=>'mymce']) !!}
-                </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::select('category_id[]', array(''=>'Choose Category') + $categories, null, ['class'=>'form-control', 'id'=>'feature', 'multiple']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::select('type_id', array(''=>'Choose Type') + $type, null, ['class'=>'form-control', 'id'=>'type_id', 'required']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::select('location_id', array(''=>'Choose Location') + $location, null, ['class'=>'form-control', 'id'=>'location_id', 'required']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::select('salary_id', array(''=>'Choose Salary') + $salary, null, ['class'=>'form-control', 'id'=>'salary_id', 'required']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::text('job_name', null, ['class'=>'form-control', 'placeholder'=>'Add Job Name', 'id'=>'job_name']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::text('job_name_ar', null, ['class'=>'form-control', 'placeholder'=>'Add Job Name Ar', 'id'=>'job_name']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::text('job_title', null, ['class'=>'form-control', 'placeholder'=>'Add Job Title', 'id'=>'job_title']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::text('job_title_ar', null, ['class'=>'form-control', 'placeholder'=>'Add Job Title Ar', 'id'=>'job_title']) !!}
+                    </div>
+                    <div class="form-group col-md-12">
+                        {!! Form::label('job_desc', 'Job Description En') !!}
+                        {!! Form::textarea('job_desc', null, ['class'=>'form-control', 'placeholder'=>'Add Job Description', 'id'=>'mymce']) !!}
+                    </div>
+                    <div class="form-group col-md-12">
+                        {!! Form::label('job_desc', 'Job Description Ar') !!}
+                        {!! Form::textarea('job_desc_ar', null, ['class'=>'form-control', 'placeholder'=>'Add Job Description Ar', 'id'=>'mymce']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), 0,['class'=>'form-control', 'id'=>'inputStatus']) !!}
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

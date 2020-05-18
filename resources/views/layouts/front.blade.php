@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 @include('front.header.header')
-<body>
-<div class="animsition">
-    <div class="wrapper boxed-inner">
-        <!-- Content CLick Capture-->
-        <div class="click-capture"></div>
-@include('front.navbar.navbar')
-        <!-- Jumbotron -->
-
-@yield('content')
-       <div class="boxed">
-           @include('front.footer.footer')
-       </div>
-    </div>
+<body class="appear-animate">
+<!-- Page Loader -->
+<div class="page-loader">
+    <div class="loader">Loading...</div>
 </div>
+<!-- End Page Loader -->
+<!-- Page Wrap -->
+<div class="page" id="top">
+    @include('front.navbar.navbar')
+    @yield('content')
+    @include('front.footer.footer')
+</div>
+<!-- End Page Wrap -->
 @include('front.scripts.scripts')
-@yield('scripts')
 </body>
 </html>

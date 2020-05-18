@@ -41,16 +41,18 @@
                                 <thead>
                                 <tr>
                                     <th data-toggle="true"> ID </th>
-                                    <th> Brand </th>
                                     <th> Categories </th>
                                     <th> Job Name </th>
+                                    <th> Job Name Ar</th>
                                     <th> Type </th>
                                     <th> Publish </th>
                                     <th></th>
                                     <th data-hide="all"> Location </th>
                                     <th data-hide="all"> Title </th>
+                                    <th data-hide="all"> Title Ar</th>
                                     <th data-hide="all"> Salary </th>
                                     <th data-hide="all"> Description </th>
+                                    <th data-hide="all"> Description Ar</th>
                                     <th data-hide="all"> Created </th>
                                     <th data-hide="all"> Updated </th>
                                 </tr>
@@ -60,9 +62,9 @@
                                     @foreach($careers as $career)
                                         <tr>
                                             <td>{{$career->id}}</td>
-                                            <td><img width="100" src="{{$career->brand ? asset('../public/brands/'.$career->brand->brand->name) : asset('public/assets/admin/assets/images/no-logo.jpg')}}" alt="$career->brand->brand->name" class="img-thumbnail"></td>
                                             <td>{{$career->categories->pluck('name')->implode(' | ')}}</td>
-                                            <td>{{$career->job_name}}</td>
+                                            <td>{{$career->getTranslation('job_name', 'en')}}</td>
+                                            <td>{{$career->getTranslation('job_name', 'ar')}}</td>
                                             <td>{{$career->type->name}}</td>
                                             <td>
                                                 @if($career->is_publish)
@@ -76,9 +78,11 @@
                                                 <a href="#" class="btn btn-outline-danger" data-careerid="{{$career->id}}" data-toggle="modal" data-target="#careerConfirmDelete"><i class="mdi mdi-delete-forever"></i></a>
                                             </td>
                                             <td>{{$career->location->name}}</td>
-                                            <td>{{$career->job_title}}</td>
+                                            <td>{{$career->getTranslation('job_title', 'en')}}</td>
+                                            <td>{{$career->getTranslation('job_title', 'ar')}}</td>
                                             <td>{{$career->salary->name}}</td>
-                                            <td>{{substr($career->job_desc, 0, 100) }}</td>
+                                            <td>{{substr($career->getTranslation('job_desc', 'en'), 0, 100) }}</td>
+                                            <td>{{substr($career->getTranslation('job_desc', 'ar'), 0, 100) }}</td>
                                             <td>{{$career->created_at->diffForHumans()}}</td>
                                             <td>{{$career->updated_at->diffForHumans()}}</td>
                                         </tr>

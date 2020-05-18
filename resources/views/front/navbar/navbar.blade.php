@@ -6,7 +6,7 @@
             <a href="{{route('home', app()->getLocale())}}" class="logo">
                 @foreach($nav_logos as $nav_logo)
                 @if($nav_logo->is_publish == 1)
-                <img src="{{$nav_logo->logo ? asset('/brands/'.$nav_logo->logo) : asset('/brands/no-logo.jpg')}}"
+                <img src="{{$nav_logo->logo}}"
                      alt="@if (app()->getLocale() == 'en')
                      {{$nav_logo->getTranslation('title', 'en')}}
                      @elseif(app()->getLocale() == 'ar')

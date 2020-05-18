@@ -42,7 +42,7 @@
                                     {!! Form::text('career_email', null, ['class'=>'form-control', 'placeholder'=>'Update Career Mail', 'id'=>'career_email']) !!}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::text('contact_email', null, ['class'=>'form-control', 'placeholder'=>'Update Contact Email', 'id'=>'contact_email']) !!}
+                                    {!! Form::text('contact_email', null, ['class'=>'form-control', 'placeholder'=>'ContactDetails', 'id'=>'contact_email']) !!}
                                 </div>
                                 <div class="form-group col-md-6">
                                     {!! Form::text('admin_email', null, ['class'=>'form-control', 'placeholder'=>'Update Admin Email', 'id'=>'admin_email']) !!}

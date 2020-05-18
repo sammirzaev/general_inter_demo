@@ -35,7 +35,9 @@
                             <h4 class="card-title">Brochures Category Page</h4>
                             <h6 class="card-subtitle">Brochures Category List</h6>
                             @include('layouts.flash-message')
+                            @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                             <button class="btn btn-outline-success" data-toggle="modal" data-target="#filterModal"><i class="mdi mdi-plus-circle-multiple-outline"></i></button>
+                            @endif
                             @include('admin.brochure_category.create')
                                 <form class="app-search" action="" method="GET">
                                     <div class="container">
@@ -50,6 +52,7 @@
                                     </div>
                                 </form>
                             {!! Form::open(['method'=>'DELETE', 'action'=>'FilterBrochureController@deleteAll', 'class'=>'', 'files'=>true]) !!}
+                            @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                 <div class="row mt-5 ml-2">
                                         <div class="form-group col-md-2">
                                             <select name="checkBoxArray" class="form-control">
@@ -63,6 +66,7 @@
                                             </button>
                                         </div>
                                 </div>
+                            @endif
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -98,10 +102,12 @@
                                             <td>{{$brochure_filter->created_at->diffForHumans()}}</td>
                                             <td>{{$brochure_filter->updated_at->diffForHumans()}}</td>
                                                 <td>
+                                                    @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                                     <a href="{{ route('brochure-filter.edit', $brochure_filter->id)}}" class="btn btn-outline-info"><i class="mdi mdi-lead-pencil"></i></a>
                                                     <a href="#" class="btn btn-outline-danger" name="delete_single" data-filterid="{{$brochure_filter->id}}" data-toggle="modal" data-target="#filterContactConfirmDelete">
                                                     <i class="mdi mdi-delete-forever"></i>
-                                                </a>
+                                                    </a>
+                                                    @endif
                                             </td>
                                         </tr>
                                         @include('admin.brochure_category.delete')

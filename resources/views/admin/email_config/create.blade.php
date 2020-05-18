@@ -15,7 +15,7 @@
                         {!! Form::text('career_email', null, ['class'=>'form-control', 'placeholder'=>'Add Career Mail', 'id'=>'career_email']) !!}
                     </div>
                     <div class="form-group col-md-12">
-                        {!! Form::text('contact_email', null, ['class'=>'form-control', 'placeholder'=>'Add Contact Mail', 'id'=>'contact_email']) !!}
+                        {!! Form::text('contact_email', null, ['class'=>'form-control', 'placeholder'=>'ContactDetails', 'id'=>'contact_email']) !!}
                     </div>
                     <div class="form-group col-md-12">
                         {!! Form::text('admin_email', null, ['class'=>'form-control', 'placeholder'=>'Add Admin Mail', 'id'=>'admin_email']) !!}

@@ -58,7 +58,7 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td><img src="{{$user->photo ? asset('public/images/'.$user->photo->photo) : asset('public/assets/admin/assets/images/no-avatar.png')}}" alt="avatar" width="50" class="img-circle"></td>
+                                <td><img src="{{$user->photo ? asset('images/'.$user->photo->photo) : asset('assets/admin/assets/images/no-avatar.png')}}" alt="avatar" width="50" class="img-circle"></td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{substr($user->password, 0, 10)}}</td>

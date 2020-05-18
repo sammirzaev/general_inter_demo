@@ -1,51 +1,96 @@
-<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModal">
-    <div class="modal-dialog" role="document">
+<!--=============================Careers Modal Form===========================================-->
+<div class="modal fade" id="careersModal" tabindex="-1" role="dialog" aria-labelledby="careersModal" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="careerModal">Apply Job</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="careers">Apply Job</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['FrontController@store', app()->getLocale()], 'class'=>'', 'files'=>true]) !!}
+                <!-- ContactDetails Form -->
                 <div class="row">
-                    <div class="form-group col-sm-12 col-lg-12">
-                        {!! Form::select('job_id', array(''=>'Choose Position') + $careers, null, ['class'=>'nice-select job_id', 'id'=>'position', 'required']) !!}
-                    </div>
-                    <div class="form-group col-sm-6 col-lg-4">
-                        <input class="input-gray" type="text" name="name" required placeholder="Full Name*">
-                    </div>
-                    <div class="form-group col-sm-6 col-lg-4">
-                        <input class="input-gray" type="email" name="email" placeholder="Email*">
-                    </div>
-                    <div class="form-group col-sm-6 col-lg-4">
-                        <input class="input-gray" type="text" name="phone" placeholder="Your Phone Number*">
-                    </div>
-                    <div class="form-group col-sm-12 col-lg-12">
-                        <input class="input-gray" type="text" name="subject" placeholder="Subject (Optinal)">
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <textarea class="input-gray" name="letter"  placeholder="Cover Letter (Optional)*"></textarea>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <label for="cv">Upload CV*</label>
-                        <input type="file" class="input-gray" id="cv" name="file" required  placeholder="Upload Your CV*">
-                        <p class="text-muted">upload only pdf, doc, docx formats please</p>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                    <div class="col-md-12">
+                        {!! Form::open(['method'=>'POST', 'action'=>['FrontController@store', app()->getLocale()], 'class'=>'', 'files'=>true]) !!}
+                            <div class="clearfix">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="mb-20 mb-md-10">
+                                            {!! Form::select('job_id', array(''=>'Choose Position') + $careers, null, ['class'=>'input-md round form-control job_id', 'id'=>'position', 'required']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Name -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="name"  class="input-md round form-control" placeholder="Full Name" required>
+                                    </div>
+                                </div>
+                                <!-- Email -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="input-md round form-control" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <!--Phone Number -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="phone" class="input-md round form-control" placeholder="Contact Number" required>
+                                    </div>
+                                </div>
+                                <!--Subject -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="subject"  class="input-md round form-control" placeholder="Subject (Optional)">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Message -->
+                                    <div class="form-group">
+                                        <textarea name="letter" class="input-md round form-control" style="height: 84px;" placeholder="Cover Letter (Optional)"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Message -->
+                                    <div class="form-group">
+                                        <div class="mb-20 mb-md-10">
+                                            <label for="cv">
+                                                * Upload your CV
+                                            </label>
+                                            <input type="file" name="file"  id="cv" required>
+                                            <p class="help-block">
+                                                pdf, doc and docx formats are valid
+                                            </p>
+                                        </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        @endif
+                            <div class="clearfix">
+                                <div class="cf-left-col">
+                                    <!-- Inform Tip -->
+                                    <div class="form-tip pt-20">
+                                        <i class="fa fa-info-circle"></i> All the fields are required
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn-upper btn-yellow btn">Submit</button>
-                    </div>
-                    {{Form::close()}}
                 </div>
+                <!-- End ContactDetails Form -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-mod btn-border btn-medium btn-round">Submit</button>
+                {{Form::close()}}
+                <button type="button" class="btn btn-mod btn-border btn-medium btn-round" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+<!--=============================End Careers Modal Form=======================================-->

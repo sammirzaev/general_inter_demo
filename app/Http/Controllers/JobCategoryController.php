@@ -41,7 +41,11 @@ class JobCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        JobCategory::create($request->all());
+        $job_category = new JobCategory;
+        $job_category->setTranslation('name', 'en', $request->name);
+        $job_category->setTranslation('name', 'ar', $request->name_ar);
+        $job_category->is_publish = $request->is_publish;
+        $job_category->save();
         return redirect('admin/job-category')->with('success', 'Job Category has been created successfully');
     }
 
@@ -78,7 +82,11 @@ class JobCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        JobCategory::whereId($id)->first()->update($request->all());
+        $job_category = JobCategory::findOrFail($id);
+        $job_category->setTranslation('name', 'en', $request->name);
+        $job_category->setTranslation('name', 'ar', $request->name_ar);
+        $job_category->is_publish = $request->is_publish;
+        $job_category->update();
         return redirect('admin/job-category')->with('info', 'Job Category has been updated successfully');
     }
 

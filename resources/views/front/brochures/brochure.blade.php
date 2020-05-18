@@ -2,7 +2,7 @@
 @section('content')
     <main class="page-header">
         <div class="container">
-            <h1 class="text-center">Service Brochures</h1>
+            <h1 class="text-center">Brochures</h1>
             @include('layouts.flash-message')
             <p class="text-center text-muted">In Order to download please kindly request by clicking brochure</p>
             <div class="col-md-12 justify-content-center">
@@ -31,7 +31,7 @@
                     @foreach($brochures as $brochure)
                     <div class="grid-item {{$brochure->filter_id}} js-isotope-item js-grid-item">
                         <div class="news-item">
-                            <img alt="" src="{{$brochure->picture ? asset('public/brochures-pics/'.$brochure->picture) : asset('public/assets/admin/assets/images/no-avatar.png')}}" style="width: 350px; height: 370px;">
+                            <img alt="" src="{{$brochure->picture ? asset('brochures-pics/'.$brochure->picture) : asset('assets/admin/assets/images/no-avatar.png')}}" style="width: 350px; height: 370px;">
                             <div class="news-hover">
                                 <div class="hover-border"><div></div></div>
                                 <div class="content">

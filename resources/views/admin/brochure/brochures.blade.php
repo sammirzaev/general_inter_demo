@@ -35,7 +35,9 @@
                             <h4 class="card-title">Brochures Page</h4>
                             <h6 class="card-subtitle">Brochures List</h6>
                             @include('layouts.flash-message')
+                            @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                             <button class="btn btn-outline-success" data-toggle="modal" data-target="#brochureModal"><i class="mdi mdi-plus-circle-multiple-outline"></i></button>
+                            @endif
                             @include('admin.brochure.create')
                                 <form class="app-search" action="" method="GET">
                                     <div class="container">
@@ -50,6 +52,7 @@
                                     </div>
                                 </form>
                             {!! Form::open(['method'=>'DELETE', 'action'=>'BrochuresController@deleteAll', 'class'=>'', 'files'=>true]) !!}
+                            @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                 <div class="row mt-5 ml-2">
                                         <div class="form-group col-md-2">
                                             <select name="checkBoxArray" class="form-control">
@@ -63,6 +66,7 @@
                                             </button>
                                         </div>
                                 </div>
+                            @endif
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -73,15 +77,12 @@
                                         </div>
                                     </th>
                                     <th data-toggle="true"> ID </th>
-                                    <th> Brochure Media </th>
                                     <th> Brochure Name EN</th>
                                     <th> Brochure Name AR</th>
                                     <th> Category EN</th>
                                     <th> Category AR</th>
                                     <th> Title EN</th>
                                     <th> Title AR</th>
-                                    <th> Description EN</th>
-                                    <th> Description AR</th>
                                     <th> Publish </th>
                                     <th> Created </th>
                                     <th> Updated </th>
@@ -99,19 +100,12 @@
                                                 </div>
                                             </td>
                                             <td>{{$brochure->id}}</td>
-                                            @if(file_exists(public_path('../public/brochures-pics/'.$brochure->picture)))
-                                                <td><img src="{{asset('../public/brochures-pics/'.$brochure->picture)}}" alt="avatar" width="60" class="img-thumbnail"></td>
-                                             @else
-                                                <td><span class="badge badge-danger">Brochure has not media</span></td>
-                                            @endif
                                             <td>{{$brochure->getTranslation('brochure_name', 'en')}}</td>
                                             <td>{{$brochure->getTranslation('brochure_name', 'ar')}}</td>
                                             <td>{{$brochure->filter->getTranslation('filter', 'en')}}</td>
                                             <td>{{$brochure->filter->getTranslation('filter', 'ar')}}</td>
                                             <td>{{$brochure->getTranslation('title', 'en')}}</td>
                                             <td>{{$brochure->getTranslation('title', 'ar')}}</td>
-                                            <td>{{substr($brochure->getTranslation('description', 'en'), 0, 10)}}</td>
-                                            <td>{{substr($brochure->getTranslation('description', 'ar'), 0, 300)}}</td>
                                              <td>
                                                @if($brochure->is_publish)
                                                   <span class="label label-table label-success">{{$brochure->is_publish == 1 ? 'Published' : 'Not Published'}}</span>
@@ -122,10 +116,12 @@
                                             <td>{{$brochure->created_at->diffForHumans()}}</td>
                                             <td>{{$brochure->updated_at->diffForHumans()}}</td>
                                                 <td>
+                                                    @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                                     <a href="{{ route('brochures.edit', $brochure->id)}}" class="btn btn-outline-info"><i class="mdi mdi-lead-pencil"></i></a>
                                                     <a href="#" class="btn btn-outline-danger" name="delete_single" data-brochureid="{{$brochure->id}}" data-toggle="modal" data-target="#brochureContactConfirmDelete">
                                                     <i class="mdi mdi-delete-forever"></i>
-                                                </a>
+                                                    </a>
+                                                    @endif
                                             </td>
                                         </tr>
                                         @include('admin.brochure.delete')
@@ -161,6 +157,7 @@
     </div>
 @stop
 @section('scripts')
+    <script src="https://js.pusher.com/5.1/pusher.min.js"></script>
     <script type="text/javascript">
         $('.checkBoxBrochure').click(function () {
             if (this.checked){
@@ -172,6 +169,54 @@
                     this.checked = false;
                 });
             }
-        })
+        });
+
+        // var notificationsWrapper   = $('.dropdown-notifications');
+        // var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
+        // var notificationsCountElem = notificationsToggle.find('i[data-count]');
+        // var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        // var notifications          = notificationsWrapper.find('ul.dropdown-menu');
+        //
+        // if (notificationsCount <= 0) {
+        //     notificationsWrapper.hide();
+        // }
+        // // Enable pusher logging - don't include this in production
+        // Pusher.logToConsole = true;
+        //
+        //
+        // var pusher = new Pusher('5689fb7ca82220d605e3', {
+        //     encrypted: true
+        // });
+        // var channel = pusher.subscribe('brochure-request');
+        //
+        // channel.bind('App\\Events\\BrochureRequestEvent', function(data) {
+        //     var existingNotifications = notifications.html();
+        //     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+        //     var newNotificationHtml = `
+        //   <li class="notification active">
+        //       <div class="message-center">
+        //         <div class="media-left">
+        //           <div class="media-object">
+        //             <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+        //           </div>
+        //         </div>
+        //         <div class="media-body">
+        //           <strong class="notification-title">`+data.message+`</strong>
+        //           <!--p class="notification-desc">Extra description can go here</p-->
+        //           <div class="notification-meta">
+        //             <small class="timestamp">about a minute ago</small>
+        //           </div>
+        //         </div>
+        //       </div>
+        //   </li>
+        // `;
+        //     notifications.html(newNotificationHtml + existingNotifications);
+        //
+        //     notificationsCount += 1;
+        //     notificationsCountElem.attr('data-count', notificationsCount);
+        //     notificationsWrapper.find('.notif-count').text(notificationsCount);
+        //     notificationsWrapper.show();
+        // });
     </script>
+
 @stop

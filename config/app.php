@@ -167,6 +167,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Alexusmai\LaravelFileManager\FileManagerServiceProvider::class,
+        Arcanedev\Localization\LocalizationServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -32,7 +32,7 @@
                 <div class="col-lg-4 col-xlg-3 col-md-5">
                     <div class="card">
                         <div class="card-body">
-                            <center class="m-t-30"> <img src="{{ Auth::user()->photo ? asset('public/images/'. Auth::user()->photo['photo']) : asset('public/assets/admin/assets/images/no-avatar.png')}}" class="img-circle" width="150" />
+                            <center class="m-t-30"> <img src="{{ Auth::user()->photo ? asset('images/'. Auth::user()->photo['photo']) : asset('assets/admin/assets/images/no-avatar.png')}}" class="img-circle" width="150" />
                                 <h4 class="card-title m-t-10">{{Auth::user()->name}}</h4>
                                 <h6 class="card-subtitle">{{Auth::user()->position->name}}</h6>
                             </center>
@@ -119,16 +119,18 @@
                                         {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Full Name', 'id'=>'full_name']) !!}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::select('role_id', $roles, null, ['class'=>'form-control', 'id'=>'inputRole']) !!}
+                                        <input type="hidden" name="role_id" value="{{Auth::user()->role_id}}">
+                                        <span class="badge badge-warning">{{ Auth::user()->role->name }}</span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         {!! Form::select('position_id', $positions, null, ['class'=>'form-control', 'id'=>'inputPosition']) !!}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        {!! Form::select('is_active',array( 1=>'Active', 0=>'Not Active'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
+                                        <input type="hidden" name="is_active" value="{{Auth::user()->is_active}}">
+                                        <span class="badge badge-info">{{Auth::user()->is_active == 1 ? 'Active' : 'Not Active'}}</span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <img  class="img-circle" src="{{ $user->photo ? asset('public/images/'.$user->photo['photo']) : asset('public/assets/admin/assets/images/no-avatar.png')}}" alt="Avatar" width="100">
+                                        <img  class="img-circle" src="{{ $user->photo ? asset('images/'.$user->photo['photo']) : asset('assets/admin/assets/images/no-avatar.png')}}" alt="Avatar" width="100">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="fallback">

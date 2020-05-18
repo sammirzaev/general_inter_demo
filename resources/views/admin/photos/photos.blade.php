@@ -53,12 +53,12 @@
                                     @foreach($photos as $photo)
                                         <tr>
                                             <td>{{$photo->id}}</td>
-                                            @if(file_exists(public_path('../public/images/'.$photo->photo)))
-                                            <td><img src="{{asset('../public/images/'.$photo->photo)}}" alt="avatar" width="60" class="img-circle"></td>
+                                            @if(file_exists(public_path('images/'.$photo->photo)))
+                                            <td><img src="{{asset('/images/'.$photo->photo)}}" alt="avatar" width="60" class="img-circle"></td>
                                              @else
                                              <td><span class="badge badge-danger">This Avatar belongs to User and User has been removed</span></td>
                                             @endif
-                                            @if(file_exists(public_path('../public/images/'.$photo->photo)))
+                                            @if(file_exists(public_path('images/'.$photo->photo)))
                                             <td>{{$photo->photo}}</td>
                                             @else
                                             <td><span class="badge badge-danger">File has been deleted</span></td>

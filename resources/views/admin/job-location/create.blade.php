@@ -11,6 +11,9 @@
                     {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Add Job Location', 'id'=>'name']) !!}
                 </div>
                 <div class="form-group col-md-12">
+                    {!! Form::text('name_ar', null, ['class'=>'form-control', 'placeholder'=>'Add Job Location Ar', 'id'=>'name']) !!}
+                </div>
+                <div class="form-group col-md-12">
                     {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), 0,['class'=>'form-control', 'id'=>'inputStatus']) !!}
                 </div>
                 <div class="modal-footer">

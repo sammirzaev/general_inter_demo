@@ -39,7 +39,11 @@ class JobTypeController extends Controller
      */
     public function store(Request $request)
     {
-        JobType::create($request->all());
+        $job_type = new JobType;
+        $job_type->setTranslation('name', 'en', $request->name);
+        $job_type->setTranslation('name', 'ar', $request->name_ar);
+        $job_type->is_publish = $request->is_publish;
+        $job_type->save();
         return redirect('admin/job-type')->with('success', 'Job Type has been created successfully');
     }
 
@@ -76,7 +80,11 @@ class JobTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        JobType::whereId($id)->first()->update($request->all());
+        $job_type = JobType::findOrFail($id);
+        $job_type->setTranslation('name', 'en', $request->name);
+        $job_type->setTranslation('name', 'ar', $request->name_ar);
+        $job_type->is_publish = $request->is_publish;
+        $job_type->update();
         return redirect('admin/job-type')->with('info', 'Job Type has been updated successfully');
     }
 

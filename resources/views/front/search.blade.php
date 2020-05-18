@@ -3,7 +3,7 @@
     <!-- Head Section -->
     @foreach($about_banners as $about_banner)
         @if($about_banner->is_publish == 1)
-            <section class="page-section bg-dark-alfa-50 parallax-3" data-background="{{$about_banner->banner ? asset('/about-media/'.$about_banner->banner) : asset('assets/front/images/full-width-images/section-bg-2.jpg')}}">
+            <section class="page-section bg-dark-alfa-50 parallax-3" data-background="{{$about_banner->banner}}">
                 <div class="relative container align-center mt-120 mb-120">
                     <div class="row">
                         <div class="col-md-12">
@@ -65,10 +65,10 @@
                         <h4 class="font-alt">{{$news_post->title}}</h4>
                         <div class="row">
                             <div class="col-md-5">
-                                <img src="{{asset('/posts-media/'.$news_post->media->media)}}" alt="" width="500" height="350">
+                                <img src="{{$news_post->media->media}}" alt="" width="500" height="350">
                             </div>
                             <div class="col-md-5">
-                                <p>{!! mb_strimwidth($news_post->description, 0, 300, ' ...') !!}</p>
+                                <p>{!! Str::limit($news_post->description, 300, ' ...') !!}</p>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{route('news_single', [app()->getLocale(), $news_post->slug])}}" class="btn btn-mod btn-border btn-medium btn-round mt-30 right">Go To Page</a>
@@ -82,10 +82,10 @@
                             <h4 class="font-alt">{{$service_fire->title}}</h4>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <img src="{{asset('/service-media/'.$service_fire->media)}}" alt="" width="500" height="350">
+                                    <img src="{{$service_fire->media}}" alt="" width="500" height="350">
                                 </div>
                                 <div class="col-md-5 left">
-                                    <p>{!! mb_strimwidth($service_fire->description, 0, 300, ' ...') !!}</p>
+                                    <p>{!! Str::limit($service_fire->description, 300, ' ...') !!}</p>
                                 </div>
                                 <div class="col-md-2 right">
                                     <a href="{{route('fire_safety', [app()->getLocale(), $service_fire->id])}}" class="btn btn-mod btn-border btn-medium btn-round mt-30 right">Go To Page</a>
@@ -99,10 +99,10 @@
                             <h4 class="font-alt">{{$service_security->title}}</h4>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <img src="{{asset('/service-media/'.$service_security->media)}}" alt="" width="500" height="350">
+                                    <img src="{{$service_security->media}}" alt="" width="500" height="350">
                                 </div>
                                 <div class="col-md-5 left">
-                                    <p>{!! mb_strimwidth($service_security->description, 0, 300, ' ...') !!}</p>
+                                    <p>{!! Str::limit($service_security->description, 300, ' ...') !!}</p>
                                 </div>
                                 <div class="col-md-2 right">
                                     <a href="{{route('security_elv', [app()->getLocale(), $service_security->id])}}" class="btn btn-mod btn-border btn-medium btn-round mt-30 right">Go To Page</a>
@@ -116,7 +116,7 @@
                             <h4 class="font-alt">{{$service_water->title}}</h4>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <img src="{{asset('/service-media/'.$service_water->media)}}" alt="" width="500" height="350">
+                                    <img src="{{$service_water->media}}" alt="" width="500" height="350">
                                 </div>
                                 <div class="col-md-5 left">
                                     <p>{!! mb_strimwidth($service_water->description, 0, 300, ' ...') !!}</p>
@@ -133,10 +133,10 @@
                             <h4 class="font-alt">{{$service_facility->title}}</h4>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <img src="{{asset('/service-media/'.$service_facility->media)}}" alt="" width="500" height="350">
+                                    <img src="{{$service_facility->media}}" alt="" width="500" height="350">
                                 </div>
                                 <div class="col-md-5 left">
-                                    <p>{!! mb_strimwidth($service_facility->description, 0, 300, ' ...') !!}</p>
+                                    <p>{!! Str::limit($service_facility->description, 300, ' ...') !!}</p>
                                 </div>
                                 <div class="col-md-2 right">
                                     <a href="{{route('facility_manage', [app()->getLocale(), $service_facility->id])}}" class="btn btn-mod btn-border btn-medium btn-round mt-30 right">Go To Page</a>

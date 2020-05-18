@@ -41,7 +41,8 @@
                                 <thead>
                                 <tr>
                                     <th data-toggle="true"> ID </th>
-                                    <th> Type </th>
+                                    <th> Type En</th>
+                                    <th> Type Ar</th>
                                     <th> Publish </th>
                                     <th data-hide="all"> Created </th>
                                     <th data-hide="all"> Updated </th>
@@ -53,7 +54,8 @@
                                     @foreach($types as $type)
                                         <tr>
                                             <td>{{$type->id}}</td>
-                                            <td>{{$type->name}}</td>
+                                            <td>{{$type->getTranslation('name', 'en')}}</td>
+                                            <td>{{$type->getTranslation('name', 'ar')}}</td>
                                             <td>
                                             @if($type->is_publish)
                                                 <span class="label label-table label-success">{{$type->is_publish == 1 ? 'Published' : 'Not Published'}}</span>

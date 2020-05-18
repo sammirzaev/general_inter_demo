@@ -9,6 +9,8 @@ use App\Mail\Career;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class CandidateController extends Controller
 {
@@ -38,6 +40,11 @@ class CandidateController extends Controller
     public function create()
     {
         //
+    }
+
+    public function download($id){
+        $candidate = Candidate::findOrFail($id);
+        return response()->download(public_path('resume/'.$candidate->file));
     }
 
     /**

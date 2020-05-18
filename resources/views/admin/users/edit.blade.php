@@ -54,7 +54,7 @@
                                 {!! Form::select('is_active',array( 1=>'Active', 0=>'Not Active'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
                             </div>
                             <div class="form-group col-md-6">
-                                <img  class="img-circle" src="{{ $user->photo ? asset('public/images/'.$user->photo['photo']) : asset('public/assets/admin/assets/images/no-avatar.png')}}" alt="Avatar" width="100">
+                                <img  class="img-circle" src="{{ $user->photo ? asset('images/'.$user->photo['photo']) : asset('assets/admin/assets/images/no-avatar.png')}}" alt="Avatar" width="100">
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="fallback">

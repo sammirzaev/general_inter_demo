@@ -70,8 +70,8 @@ File: scss
  *  7. Widgets
  *  8. Custom Templates
  */
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 .card {
   background: #272c33; }
@@ -1516,7 +1516,7 @@ Notify
     opacity: 0.0; } }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -1738,8 +1738,8 @@ File: scss
     top: calc(50% - 3.5px);
     left: calc(50% - 3.5px); }
 
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%; }
@@ -2218,7 +2218,7 @@ ul#themecolors {
   background: #00897b;
   border-color: #00897b; }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -2238,7 +2238,7 @@ ul#themecolors {
 .btn.active .text {
   display: none; }
 
-/*============================================================== 
+/*==============================================================
  Cards page
  ============================================================== */
 .card-actions {
@@ -2304,7 +2304,7 @@ ul#themecolors {
     background: #7460ee;
     border-color: #7460ee; }
 
-/*============================================================== 
+/*==============================================================
 Breadcrumb
  ============================================================== */
 .bc-colored .breadcrumb-item,
@@ -2320,7 +2320,7 @@ Breadcrumb
 .breadcrumb {
   margin-bottom: 0px; }
 
-/*============================================================== 
+/*==============================================================
  Ui-bootstrap
  ============================================================== */
 ul.list-icons {
@@ -2354,7 +2354,7 @@ ul.two-part {
 html body .accordion .card {
   margin-bottom: 0px; }
 
-/*============================================================== 
+/*==============================================================
  flot chart
  ============================================================== */
 .flot-chart {
@@ -2377,8 +2377,8 @@ body .jqstooltip {
   border-color: transparent;
   border-radius: 60px; }
 
-/*============================================================== 
-Easy pie chart 
+/*==============================================================
+Easy pie chart
  ============================================================== */
 .chart {
   position: relative;
@@ -2434,7 +2434,7 @@ Easy pie chart
     margin-left: 0.1em;
     font-size: .8em; }
 
-/*============================================================== 
+/*==============================================================
 Dashboard1 chart
  ============================================================== */
 .ct-charts {
@@ -2477,7 +2477,7 @@ html body #visitor .c3-chart-arcs-title {
     line-height: 12px;
     white-space: nowrap; }
 
-/*============================================================== 
+/*==============================================================
 Dashboard2 chart
  ============================================================== */
 .campaign {
@@ -2526,7 +2526,7 @@ Dashboard2 chart
   stroke-width: 3px;
   stroke: rgba(255, 255, 255, 0.5); }
 
-/*============================================================== 
+/*==============================================================
 Dashboard3 chart
  ============================================================== */
 .total-sales {
@@ -2568,7 +2568,7 @@ Dashboard3 chart
 .calender-sidebar {
   background: rgba(0, 0, 0, 0.02); }
 
-/*============================================================== 
+/*==============================================================
 Dashboard4 chart
  ============================================================== */
 .ecomm-donute svg text {
@@ -2597,19 +2597,19 @@ Dashboard4 chart
     fill: #26c6da;
     fill-opacity: 0.2; }
 
-/*============================================================== 
+/*==============================================================
 Dashboard6 chart
  ============================================================== */
 .product-overview.table tbody tr td {
   vertical-align: middle; }
 
-/*============================================================== 
+/*==============================================================
 Widget-data
  ============================================================== */
 .sparkchart {
   margin-bottom: -2px; }
 
-/*============================================================== 
+/*==============================================================
 File upload
  ============================================================== */
 .btn-file {
@@ -2680,7 +2680,7 @@ File upload
 .fileinput.input-group > .btn-file {
   z-index: 1; }
 
-/*============================================================== 
+/*==============================================================
 widget-chart-page product review
  ============================================================== */
 .product-review {
@@ -2712,7 +2712,7 @@ widget-chart-page product review
   .customtab li a.nav-link:hover {
     color: #009efb; }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -2747,7 +2747,7 @@ Form addons page
 .input-form .btn {
   padding: 8px 12px; }
 
-/*============================================================== 
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -5320,7 +5320,7 @@ Email inbox Page
   height: 20px; }
 
 /*******************
-Contact app Page
+ContactDetails app Page
 ******************/
 /*left-aside-column*/
 .contact-page-aside {
@@ -6698,8 +6698,8 @@ Author: Themedesigner
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 @media (min-width: 1650px) {
   .widget-app-columns {
@@ -6708,16 +6708,16 @@ File: scss
   .campaign {
     height: 365px !important; } }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
     -webkit-column-count: 2;
     column-count: 2; } }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -6739,8 +6739,8 @@ File: scss
   .inbox-center a {
     width: 200px; } }
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 @media (min-width: 768px) {
   .navbar-header {
@@ -6768,8 +6768,8 @@ File: scss
     flex-wrap: nowrap !important;
     -webkit-flex-wrap: nowrap !important; } }
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 @media (max-width: 767px) {
   /*Header*/
@@ -6879,7 +6879,7 @@ File: scss
     left: -14px;
     border-right-width: 14px;
     border-left-width: 0; }
-  /*Contact app page*/
+  /*ContactDetails app page*/
   .left-aside {
     width: 100%;
     position: relative;
@@ -8150,13 +8150,13 @@ File: scss
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, .footable .pagination li a, .select2-container--default .select2-selection--single .select2-selection__rendered, .ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection, .close, .page-item .page-link {
   color: #ffffff; }
 
-/******************* 
+/*******************
 Border Colors
 *******************/
 .table td, .nav-tabs, hr, ul.wysihtml5-toolbar, .tabcontent-border, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--multiple .select2-selection__choice, .bootstrap-tagsinput, .ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection, .ms-container .ms-list, .wizard-content .wizard.wizard-circle > .steps .step, .table-bordered, .modal-footer, .modal-header, .jsgrid-header-row > .jsgrid-header-cell, .jsgrid-edit-row > .jsgrid-cell, .jsgrid-filter-row > .jsgrid-cell, .jsgrid-grid-body, .jsgrid-grid-header, .jsgrid-header-row > .jsgrid-header-cell, .jsgrid-insert-row > .jsgrid-cell, .bootstrap-table .table > thead > tr > th, .bootstrap-table .table, .fixed-table-container, .page-item .page-link, .page-item.disabled .page-link, .featured-plan .pricing-body, .footable .pagination li a, .footable .pagination li.disabled a, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button {
   border-color: rgba(120, 130, 140, 0.13); }
 
-/******************* 
+/*******************
 /*Background Colors light*/
 /*******************/
 .progress, .fc-day, .css-bar > i, .dropzone, code, .popover, .grid-stack-item-content, .form-control:disabled, .form-control[readonly], .input-group-addon, .select2-container--default .select2-selection--multiple .select2-selection__choice, .ms-container .ms-selectable, .ms-container .ms-selection, .wizard-content .wizard > .actions > ul > li > a[href="#previous"], .jsgrid-grid-header, .jsgrid-filter-row > .jsgrid-cell, .dropdown-menu, .mega-dropdown .dropdown-menu {
@@ -8165,13 +8165,13 @@ Border Colors
 .grid-stack-item-content, .input-group-addon, .wizard-content .wizard > .steps > ul > li.current > a, .mailbox ul li .drop-title, .topbar .navbar-light .navbar-nav .nav-link {
   color: #ffffff; }
 
-/******************* 
+/*******************
 /*Background Colors border*/
 /*******************/
 .fc th.fc-mon, .fc th.fc-wed, .fc th.fc-fri, .fc th.fc-sun, .fc th.fc-tue, .fc th.fc-thu, .fc th.fc-sat {
   background: rgba(120, 130, 140, 0.13); }
 
-/******************* 
+/*******************
 /*Background Colors dark*/
 /*******************/
 .topbar .top-navbar .app-search .srh-btn {
@@ -8212,7 +8212,7 @@ Border Colors
   background-color: #272c33;
   color: #747d8a; }
 
-/******************* 
+/*******************
 /*Background Colors Transparent*/
 /*******************/
 .list-group-item, .checkbox label::before, .footer, .btn-outline-primary, .customvtab .tabs-vertical li .nav-link.active, .customvtab .tabs-vertical li .nav-link:hover, .customvtab .tabs-vertical li .nav-link:focus, .bd-example-popover-static, .myadmin-dd .dd-list .dd-item .dd-handle, .myadmin-dd-empty .dd-list .dd3-content, .myadmin-dd-empty .dd-list .dd3-handle, .highlight, .custom-file-control {
@@ -8221,7 +8221,7 @@ Border Colors
 .tabs-vertical li .nav-link.active, .tabs-vertical li .nav-link:hover, .tabs-vertical li .nav-link.active:focus, .dd-item > button {
   color: #ffffff; }
 
-/******************* 
+/*******************
 /*Border Colors Transparent*/
 /*******************/
 .comment-widgets .comment-row, .stylish-table tbody tr {
@@ -8261,7 +8261,7 @@ a.list-group-item:hover {
 .dp-off {
   background-color: #263238 !important; }
 
-/******************* 
+/*******************
 /*Dashboard 1*/
 /*******************/
 .total-revenue4 .ct-series-a .ct-line, .total-revenue4 .ct-series-b .ct-line {

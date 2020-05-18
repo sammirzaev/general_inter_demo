@@ -36,9 +36,6 @@
                             <h6 class="card-subtitle">Edit  Career</h6>
                             {!! Form::model($career, ['method'=>'PATCH', 'action'=>['JobCareersController@update', $career->id], 'class'=>'form-material m-t-40 row', 'files'=>true]) !!}
                             <div class="form-group col-md-6">
-                                {!! Form::select('brand_id', $brand, null, ['class'=>'form-control', 'id'=>'brand_id', 'required']) !!}
-                            </div>
-                            <div class="form-group col-md-6">
                                 {!! Form::select('category_id[]', $categories, null, ['class'=>'form-control', 'id'=>'feature', 'multiple', 'required']) !!}
                             </div>
                             <div class="form-group col-md-6">
@@ -51,17 +48,27 @@
                                 {!! Form::select('salary_id', $salary, null, ['class'=>'form-control', 'id'=>'salary_id', 'required']) !!}
                             </div>
                             <div class="form-group col-md-6">
-                                {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
+                                {!! Form::text('job_name', null, ['class'=>'form-control', 'placeholder'=>'Update Job Name', 'id'=>'job_name']) !!}
                             </div>
                             <div class="form-group col-md-6">
-                                {!! Form::text('job_name', null, ['class'=>'form-control', 'placeholder'=>'Update Job Name', 'id'=>'job_name']) !!}
+                                {!! Form::text('job_name_ar', $career->getTranslation('job_name', 'ar'), ['class'=>'form-control', 'placeholder'=>'Update Job Name Ar', 'id'=>'job_name']) !!}
                             </div>
                             <div class="form-group col-md-6">
                                 {!! Form::text('job_title', null, ['class'=>'form-control', 'placeholder'=>'Update Job Title', 'id'=>'job_title']) !!}
                             </div>
+                            <div class="form-group col-md-6">
+                                {!! Form::text('job_title_ar', $career->getTranslation('job_title', 'ar'), ['class'=>'form-control', 'placeholder'=>'Update Job Title Ar', 'id'=>'job_title']) !!}
+                            </div>
                             <div class="form-group col-md-12">
-                                {!! Form::label('job_desc', 'Job Description ') !!}
+                                {!! Form::label('job_desc', 'Job Description En') !!}
                                 {!! Form::textarea('job_desc', null, ['class'=>'form-control', 'placeholder'=>'Update Job Description', 'id'=>'mymce']) !!}
+                            </div>
+                            <div class="form-group col-md-12">
+                                {!! Form::label('job_desc_ar', 'Job Description Ar') !!}
+                                {!! Form::textarea('job_desc_ar', $career->getTranslation('job_desc', 'ar'), ['class'=>'form-control', 'placeholder'=>'Update Job Description Ar', 'id'=>'mymce']) !!}
+                            </div>
+                            <div class="form-group col-md-12">
+                                {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-info"><i class="mdi mdi-file-tree"> Update Career</i> </button>

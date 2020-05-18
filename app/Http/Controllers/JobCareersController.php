@@ -24,11 +24,10 @@ class JobCareersController extends Controller
         $users = User::all();
         $type = JobType::pluck('name', 'id')->all();
         $location = JobLocation::pluck('name', 'id')->all();
-        $brand = JobBrand::pluck('brand_name', 'brand_id', 'id')->all();
         $salary = JobSalary::pluck('name', 'id')->all();
         $categories = JobCategory::pluck('name', 'id')->all();
         $careers = JobCareers::all();
-        return view('admin.job-board.careers', compact('users', 'type', 'location', 'brand', 'salary', 'categories', 'careers'));
+        return view('admin.job-board.careers', compact('users', 'type', 'location', 'salary', 'categories', 'careers'));
     }
 
     /**
@@ -49,7 +48,18 @@ class JobCareersController extends Controller
      */
     public function store(Request $request)
     {
-         if($career = JobCareers::create($request->all()))
+        $career = new JobCareers;
+        $career->setTranslation('job_name', 'en', $request->job_name);
+        $career->setTranslation('job_name', 'ar', $request->job_name_ar);
+        $career->setTranslation('job_title', 'en', $request->job_title);
+        $career->setTranslation('job_title', 'ar', $request->job_title_ar);
+        $career->setTranslation('job_desc', 'en', $request->job_desc);
+        $career->setTranslation('job_desc', 'ar', $request->job_desc_ar);
+        $career->type_id = $request->type_id;
+        $career->location_id = $request->location_id;
+        $career->salary_id = $request->salary_id;
+        $career->is_publish = $request->is_publish;
+         if($career->save())
          {
              $career->categories()->sync($request->category_id);
          }
@@ -79,10 +89,9 @@ class JobCareersController extends Controller
         $users = User::all();
         $type = JobType::pluck('name', 'id')->all();
         $location = JobLocation::pluck('name', 'id')->all();
-        $brand = JobBrand::pluck('brand_name', 'brand_id', 'id')->all();
         $salary = JobSalary::pluck('name', 'id')->all();
         $categories = JobCategory::pluck('name', 'id')->all();
-        return view('admin.job-board.edit', compact('users', 'type', 'location', 'brand', 'salary', 'categories', 'career'));
+        return view('admin.job-board.edit', compact('users', 'type', 'location', 'salary', 'categories', 'career'));
 
     }
 
@@ -95,9 +104,19 @@ class JobCareersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $career = JobCareers::whereId($id)->first();
+        $career = JobCareers::findOrFail($id);
+        $career->setTranslation('job_name', 'en', $request->job_name);
+        $career->setTranslation('job_name', 'ar', $request->job_name_ar);
+        $career->setTranslation('job_title', 'en', $request->job_title);
+        $career->setTranslation('job_title', 'ar', $request->job_title_ar);
+        $career->setTranslation('job_desc', 'en', $request->job_desc);
+        $career->setTranslation('job_desc', 'ar', $request->job_desc_ar);
+        $career->type_id = $request->type_id;
+        $career->location_id = $request->location_id;
+        $career->salary_id = $request->salary_id;
+        $career->is_publish = $request->is_publish;
         $career->categories()->detach();
-        if($career->update($request->all())){
+        if($career->update()){
             $career->categories()->sync($request->category_id);
         }
         return redirect('admin/job-board')->with('info', 'Career has been updated successfully');

@@ -3,12 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class JobCareers extends Model
 {
+    use HasTranslations;
+    protected $translatable = [
+        'job_name',
+        'job_name_ar',
+        'job_title',
+        'job_title_ar',
+        'job_desc',
+        'job_desc_ar',
+    ];
     protected $fillable = [
         'is_publish',
-        'brand_id',
         'job_name',
         'job_title',
         'job_desc',

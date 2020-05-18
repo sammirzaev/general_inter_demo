@@ -6,22 +6,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/admin/assets/images/header-logo.png')}}">
     <title>GIG Admin Panel</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('public/assets/admin/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('public/assets/admin/assets/plugins/dropify/dist/css/dropify.min.css')}}">
+    <link href="{{asset('assets/admin/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/admin/assets/plugins/dropify/dist/css/dropify.min.css')}}">
     <!-- Footable CSS -->
-    <link href="{{asset('public/assets/admin/assets/plugins/footable/css/footable.core.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/admin/assets/plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/admin/assets/plugins/footable/css/footable.core.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/admin/assets/plugins/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet"/>
     <!-- morris CSS -->
-    <link href="{{asset('public/assets/admin/assets/plugins/morrisjs/morris.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/admin/assets/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('public/assets/admin/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" />
+    <link href="{{asset('assets/admin/assets/plugins/morrisjs/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/admin/assets/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/admin/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" />
     <!-- Custom CSS -->
-    <link href="{{asset('public/assets/admin/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="{{asset('public/assets/admin/css/colors/blue-dark.css')}}" id="theme" rel="stylesheet">
+    <link href="{{asset('assets/admin/css/colors/blue-dark.css')}}" id="theme" rel="stylesheet">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -30,6 +30,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     @yield('styles')
 </head>

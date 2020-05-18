@@ -21,7 +21,7 @@ class Admin
             if(Auth::user()->isAdmin() == 1 && Auth::user() ){
                 return $next($request);
             }else{
-                return redirect('home');
+                return redirect(app()->getLocale().'/home');
             }
             return redirect('/admin');
         }

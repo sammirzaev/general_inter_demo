@@ -19,8 +19,6 @@ class CreateBrochuresTable extends Migration
             $table->integer('filter_id');
             $table->string('brochure_name');
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('picture');
             $table->timestamps();
         });
     }

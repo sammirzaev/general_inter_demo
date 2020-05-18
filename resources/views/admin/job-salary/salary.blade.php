@@ -53,7 +53,8 @@
                                     @foreach($salaries as $salary)
                                         <tr>
                                             <td>{{$salary->id}}</td>
-                                            <td>{{$salary->name}}</td>
+                                            <td>{{$salary->getTranslation('name', 'en')}}</td>
+                                            <td>{{$salary->getTranslation('name', 'ar')}}</td>
                                             <td>
                                             @if($salary->is_publish)
                                                 <span class="label label-table label-success">{{$salary->is_publish == 1 ? 'Published' : 'Not Published'}}</span>

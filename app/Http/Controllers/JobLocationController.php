@@ -39,7 +39,11 @@ class JobLocationController extends Controller
      */
     public function store(Request $request)
     {
-        JobLocation::create($request->all());
+        $job_location = new JobLocation;
+        $job_location->setTranslation('name', 'en', $request->name);
+        $job_location->setTranslation('name', 'ar', $request->name_ar);
+        $job_location->is_publish = $request->is_publish;
+        $job_location->save();
         return redirect('admin/job-location')->with('success', 'Job Location has been created successfully');
     }
 
@@ -76,7 +80,11 @@ class JobLocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        JobLocation::whereId($id)->first()->update($request->all());
+        $job_location = JobLocation::findOrFail($id);
+        $job_location->setTranslation('name', 'en', $request->name);
+        $job_location->setTranslation('name', 'ar', $request->name_ar);
+        $job_location->is_publish = $request->is_publish;
+        $job_location->update();
         return redirect('admin/job-location')->with('info', 'Job Location has been created successfully');
     }
 

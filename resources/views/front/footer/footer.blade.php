@@ -1,70 +1,72 @@
-<hr>
-<!-- Footer -->
-<footer id="footer" class="footer section boxed">
-    <div class="footer-flex">
-        <div class="flex-item">
-            <a class="brand pull-left" href="#">
-                <img alt="" src="{{asset('public/assets/front/images/header-logo.png')}}" width="200" style="height: 60px;">
-                <div class="brand-info">
-                    <div class="brand-name"></div>
-                    <div class="brand-text"></div>
-                </div>
+<!-- Foter -->
+<footer class="page-section bg-gray-lighter footer pb-60">
+    <div class="container">
+        <!-- Footer Logo -->
+        <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
+            @foreach($footer_logos as $logo)
+            @if($logo->is_publish == 1)
+            <a href="#top">
+                <img src="{{$logo->logo}}"
+                     width="35"
+                     height="35"
+                     alt="@if (app()->getLocale() == 'en')
+                     {{$logo->getTranslation('title', 'en')}}
+                     @elseif(app()->getLocale() == 'ar')
+                     {{$logo->getTranslation('title', 'ar')}}
+                     @endif" />
             </a>
+            @endif
+            @endforeach
         </div>
-        <div class="flex-item">
-            <div class="inline-block">© General International Group Demo 2020 | All Rights Resevered</div>
+        <!-- End Footer Logo -->
+        <!-- Social Links -->
+        <div class="footer-social-links mb-110 mb-xs-60">
+            @foreach($footer_socials as $socials)
+            @if($socials->is_publish == 1)
+            <a href="{{$socials->link}}"
+               title="@if (app()->getLocale() == 'en')
+               {{$socials->getTranslation('title', 'en')}}
+               @elseif(app()->getLocale() == 'ar')
+               {{$socials->getTranslation('title', 'ar')}}
+               @endif"
+               class="{{$socials->class}}"
+               target="_blank">
+                <i class="fa {{$socials->icon}}"></i>
+            </a>
+            @endif
+            @endforeach
         </div>
-        <div class="flex-item">
-            <ul>
-                <li style="margin-bottom: 10px;">
-                    <i class="fa fa-map-marker"></i> GIG Abu Dhabi Office<br>
-                    <i class="fa fa-phone-square"></i>
-                    <a href="tel:026663316">+971 2 666 3316</a>
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <i class="fa fa-map-marker"></i> GIG Dubai Office<br>
-                    <i class="fa fa-phone-square"> </i>
-                    <a href="tel:043383599">+971 4 338 3599</a>
-                </li>
-            </ul>
-        </div>
-        <div class="flex-item">
-            <ul>
-                <li style="margin-bottom: 10px;">
-                    <i class="fa fa-map-marker"></i> GIG Al Ain Office<br>
-                    <i class="fa fa-map"> </i>
-                    <a href="https://www.google.com/maps/search/P.O.+BOX+:+46750,+Al+Ain,+U.A.E/@24.1932413,55.6067824,11z/data=!3m1!4b1" target="_blank">P.O. BOX : 46750, Al Ain, U.A.E</a>
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <i class="fa fa-map-marker"></i> GIG Umm Al Quwain Office<br>
-                    <i class="fa fa-map"> </i>
-                    <a href="https://www.google.com/maps/search/P.O.+BOX+:+3857,+Umm+Al+Quwain,+U.A.E/@25.5350351,55.5121914,12z/data=!3m1!4b1" target="_blank">P.O. BOX : 3857, Umm Al Quwain, U.A.E</a>
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <i class="fa fa-map-marker"></i> GIG Sharjah Office<br>
-                    <i class="fa fa-map"> </i>
-                    <a href="https://www.google.com/maps/search/P.O.+BOX+:+22171+,+Sharjah,+U.A.E/@25.317634,55.4405672,12z/data=!3m1!4b1" target="_blank">P.O. BOX : 22171 , Sharjah, U.A.E</a>
-                </li>
-            </ul>
-        </div>
-        <div class="flex-item">
-            <ul>
-                <li><a href="{{route('contact', app()->getLocale())}}">Our Location</a></li>
-                <li><a href="{{route('careers', app()->getLocale())}}">Career</a></li>
-                <li><a href="{{route('about', app()->getLocale())}}">About Us</a></li>
-                <li><a href="{{route('contact', app()->getLocale())}}">Contact Us</a></li>
-            </ul>
-        </div>
-
-        <div class="flex-item">
-            <div class="social-list">
-                <a href="" class="icon ion-social-twitter"></a>
-                <a href="" class="icon ion-social-facebook"></a>
-                <a href="" class="icon ion-social-googleplus"></a>
-                <a href="" class="icon ion-social-linkedin"></a>
-                <a href="" class="icon ion-social-dribbble-outline"></a>
+        <!-- End Social Links -->
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <!-- Copyright -->
+            <div class="footer-copy font-alt">
+                @foreach($footer_titles as $footer_title)
+                @if($footer_title->is_publish == 1)
+                <a href="#top">
+                    @if (app()->getLocale() == 'en')
+                        {{$footer_title->getTranslation('footer_title', 'en')}}
+                    @elseif(app()->getLocale() == 'ar')
+                        {{$footer_title->getTranslation('footer_title', 'ar')}}
+                    @endif
+                </a>
+                @endif
+                @endforeach
+            </div>
+            <!-- End Copyright -->
+            <div class="footer-made">
+                &copy; All Copyrights Reserved
             </div>
         </div>
+        <!-- End Footer Text -->
     </div>
+    <!-- Top Link -->
+    <div class="local-scroll">
+        <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
+    </div>
+    <!-- End Top Link -->
 </footer>
-
+<!-- End Foter -->
+<!-- Email Button -->
+<!--            <a href="" target="_blank" class="buy-button"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> <span>Email</span></a>-->
+<!-- End Email Button -->

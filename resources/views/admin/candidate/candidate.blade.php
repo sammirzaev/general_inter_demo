@@ -101,7 +101,7 @@
                                             <td>{{$candidate->name}}</td>
                                             <td>{{$candidate->email}}</td>
                                             <td>{{$candidate->phone}}</td>
-                                            <td><a href="#" class="btn btn-outline-success">{{substr($candidate->file, 0, 10)}}</a></td>
+                                            <td><a href="{{route('download', $candidate->id)}}" class="btn btn-outline-success"><i class="mdi mdi-download"> Download CV</i></a></td>
                                             <td>{{substr($candidate->subject, 0, 5)}}</td>
                                             <td>{{$candidate->letter}}</td>
                                             <td>{{$candidate->created_at->diffForHumans()}}</td>

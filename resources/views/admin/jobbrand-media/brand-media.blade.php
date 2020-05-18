@@ -35,7 +35,7 @@
                             <h4 class="card-title">Brand Media Page</h4>
                             <h6 class="card-subtitle">Manage Brads Media</h6>
                             @include('layouts.flash-message')
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="mdi mdi-message-plus"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediaModal" data-whatever="@mdo"><i class="mdi mdi-message-plus"></i></button>
                             @include('admin.jobbrand-media.create')
                             <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
                                 <thead>

@@ -36,18 +36,6 @@
                             <h6 class="card-subtitle">Edit Brochures</h6>
                             {!! Form::model($brochure, ['method'=>'PATCH', 'action'=>['BrochuresController@update', $brochure->id], 'class'=>'form-material m-t-40 row', 'files'=>true]) !!}
                             <div class="form-group col-md-6">
-                                @if(file_exists(public_path('public/brochures-pics/'.$brochure->picture)))
-                                <img src="{{asset('public/brochures-pics/'.$brochure->picture)}}" alt="avatar" width="60" class="img-thumbnail">
-                                @else
-                                 <span class="badge badge-danger">Brochure Media Not Available</span>
-                                @endif
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div class="fallback">
-                                    <input type="file" name="picture" id="input-file-now" class="dropify" />
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
                                 {!! Form::text('brochure_name', null, ['class'=>'form-control', 'placeholder'=>'Update Brochure Name', 'id'=>'brochure_name']) !!}
                             </div>
                             <div class="form-group col-md-6">
@@ -67,12 +55,6 @@
                             </div>
                             <div class="form-group col-md-6">
                                 {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), null,['class'=>'form-control', 'id'=>'inputStatus']) !!}
-                            </div>
-                            <div class="form-group col-md-12">
-                                {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Update Brochure Description', 'id'=>'mymce']) !!}
-                            </div>
-                            <div class="form-group col-md-12">
-                                {!! Form::textarea('description_ar', $brochure->getTranslation('description', 'ar'), ['class'=>'form-control', 'placeholder'=>'Update Brochure Description AR', 'id'=>'mymce']) !!}
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-info"><i class="mdi mdi-file-tree"> Update Brochure</i> </button>

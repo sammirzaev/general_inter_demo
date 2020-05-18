@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\BrochureRequest;
+use App\Candidate;
 use App\Events\UserOnline;
+use App\JobCareers;
+use App\Project;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,6 +25,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
+        $projects = Project::where('is_publish', '=', 1)->orderBy('id', 'DESC')->paginate(4);
         $file_size = 0;
         foreach( File::allFiles(public_path()) as $file)
         {
@@ -28,8 +33,24 @@ class AdminController extends Controller
         }
         $file_size = number_format($file_size / 1048576,2);
         $count_user = User::all()->count();
-
-        return view('admin.main.index', compact('users', 'file_size', 'count_user'));
+        $count_candidate = Candidate::all()->count();
+        $count_job = JobCareers::all()->count();
+        $count_brochures = BrochureRequest::all()->count();
+        $publish_job = JobCareers::where('is_publish', '=', 1)->count();
+        $job = JobCareers::where('is_publish', '!=', 0)->orderBy('id', 'DESC')->paginate(5);
+        $latest_candidate = Candidate::where('job_id', '!=', 0)->orderBy('id', 'DESC')->paginate(5);
+        return view('admin.main.index', compact(
+            'users',
+            'file_size',
+            'count_user',
+            'count_candidate',
+            'count_job',
+            'count_brochures',
+            'publish_job',
+            'latest_candidate',
+            'job',
+            'projects'
+        ));
     }
 
 

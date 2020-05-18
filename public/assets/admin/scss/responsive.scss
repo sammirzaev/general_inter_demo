@@ -4,49 +4,49 @@ Author: Themedesigner
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 
 @media(min-width:1650px) {
     .widget-app-columns {
-      column-count:3; 
-    } 
+      column-count:3;
+    }
     .campaign{
         height: 365px!important;
     }
 }
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 
 @media(max-width:1370px) {
     .widget-app-columns {
       column-count:2;
-    }  
+    }
 }
 
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 
 @media(min-width:1024px) {
    .page-wrapper{
         margin-left:240px;
-        
-    }  
+
+    }
    .footer{
             left: 240px;
-      } 
-    
+      }
+
 }
 
 @media(max-width:1023px) {
    .page-wrapper{
         margin-left:60px;
         transition: 0.2s ease-in;
-    }  
+    }
    .footer{
             left: 60px;
       }
@@ -59,8 +59,8 @@ File: scss
 }
 
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 
 @media(min-width:768px) {
@@ -79,7 +79,7 @@ File: scss
     }
     .card-group .card:first-child, .card-group .card:not(:first-child):not(:last-child){
         border-right:1px solid rgba(0, 0, 0, 0.03);
-        
+
     }
     .material-icon-list-demo .icons div {
         width: 33%;
@@ -102,12 +102,12 @@ File: scss
 }
 
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 
 @media(max-width:767px) {
-    
+
     /*Header*/
     .topbar {
         position: fixed;
@@ -159,10 +159,10 @@ File: scss
             .action-icons {
                 display: block;
                 padding: 10px 0;
-            } 
+            }
         }
     }
-    
+
     .vtabs .tabs-vertical {
         width: auto;
     }
@@ -198,7 +198,7 @@ File: scss
     }
     .login-box{
         width: 90%;
-        
+
     }
     .login-sidebar{
         padding: 10% 0;
@@ -206,12 +206,12 @@ File: scss
             position: relative;
         }
     }
-    
+
     /*This is for chat page*/
     .chat-main-box .chat-left-aside {
         left: -250px;
         position: absolute;
-        
+
         transition: 0.5s ease-in;
         background: $white;
         &.open-pnl {
@@ -251,8 +251,8 @@ File: scss
         border-right-width: 14px;
         border-left-width: 0;
     }
-    
-    /*Contact app page*/
+
+    /*ContactDetails app page*/
     .left-aside{
         width: 100%;
         position: relative;

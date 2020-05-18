@@ -7,7 +7,7 @@ return [
     'projects' => 'Projects',
     'brochures' => 'Brochures',
     'careers' => 'Careers',
-    'contact' => 'Contact Us',
+    'contact' => 'ContactDetails Us',
     //==============================END HOME PAGE NAVBAR==========================================
 
 ];

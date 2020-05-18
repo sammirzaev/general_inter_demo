@@ -41,7 +41,8 @@
                                 <thead>
                                 <tr>
                                     <th data-toggle="true"> ID </th>
-                                    <th> Location </th>
+                                    <th> Location En</th>
+                                    <th> Location Ar</th>
                                     <th> Publish </th>
                                     <th data-hide="all"> Created </th>
                                     <th data-hide="all"> Updated </th>
@@ -53,7 +54,8 @@
                                     @foreach($locations as $location)
                                         <tr>
                                             <td>{{$location->id}}</td>
-                                            <td>{{$location->name}}</td>
+                                            <td>{{$location->getTranslation('name', 'en')}}</td>
+                                            <td>{{$location->getTranslation('name', 'ar')}}</td>
                                             <td>
                                             @if($location->is_publish)
                                                 <span class="label label-table label-success">{{$location->is_publish == 1 ? 'Published' : 'Not Published'}}</span>

@@ -61,7 +61,7 @@ class PositionController extends Controller
     {
         Position::create($request->all());
         $user = User::where('id', '!=', auth()->user()->id)->get();
-        \Notification::send($user, new PositionNotification(Position::latest('id')->first()));
+        \Notification::send($user, new PositionNotification(Position::all()->first()));
         return redirect('admin/positions' )->with('success', 'Position has been created successfully');
     }
 

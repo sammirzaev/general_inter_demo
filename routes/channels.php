@@ -19,6 +19,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 //Broadcast::channel('App.User.{id}', function ($user, $id) {
 //    return (int) $user->id === (int) $id;
 //});
-Broadcast::channel('my-channel', function ($user) {
-    return $user;
-});
+//Broadcast::channel('my-channel', function ($user) {
+//    return $user;
+//});
+//Broadcast::channel('brochure.{brochureId}', function ($brochure, $brochureId) {
+//    return $brochure->id === \App\BrochureRequest::findOrNew($brochureId)->brochure_id;
+//});

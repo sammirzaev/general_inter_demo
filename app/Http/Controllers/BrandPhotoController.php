@@ -42,7 +42,7 @@ class BrandPhotoController extends Controller
         $name = time(). $file->getClientOriginalName();
         $file->move('brands', $name);
         BrandPhoto::create(['name'=>$name]);
-        return redirect('admin/avatars')->with('success', 'Avatar Media has been uploaded successfully');
+        return redirect('admin/brand-media')->with('success', 'Avatar Media has been uploaded successfully');
     }
 
     /**

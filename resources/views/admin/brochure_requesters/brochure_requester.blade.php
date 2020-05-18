@@ -48,6 +48,7 @@
                                     </div>
                                 </form>
                             {!! Form::open(['method'=>'DELETE', 'action'=>'BrochureRequestController@deleteAll', 'class'=>'', 'files'=>true]) !!}
+                            @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                 <div class="row mt-5 ml-2">
                                         <div class="form-group col-md-2">
                                             <select name="checkBoxArray" class="form-control">
@@ -61,6 +62,7 @@
                                             </button>
                                         </div>
                                 </div>
+                            @endif
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -96,9 +98,11 @@
                                             <td>{{$brochure_request->requester_phone}}</td>
                                             <td>{{$brochure_request->created_at->diffForHumans()}}</td>
                                                 <td>
+                                                    @if(Auth::user()->role->name == 'Administrator' || Auth::user()->role->name == 'Editor')
                                                     <a href="#" class="btn btn-outline-danger" name="delete_single" data-requestid="{{$brochure_request->id}}" data-toggle="modal" data-target="#requestContactConfirmDelete">
                                                     <i class="mdi mdi-delete-forever"></i>
-                                                </a>
+                                                    </a>
+                                                    @endif
                                             </td>
                                         </tr>
                                         @include('admin.brochure_requesters.delete')

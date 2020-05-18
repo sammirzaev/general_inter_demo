@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['FrontController@brochureRequest', app()->getLocale()], 'class'=>'', 'files'=>true]) !!}
+
                 <div class="row">
                     <div class="form-group col-sm-12 col-lg-12">
                         {!! Form::select('brochure_id', array(''=>'Choose Brochure') + $brochure_request,  null,['class'=>'nice-select brochure_id', 'required']) !!}
@@ -25,7 +26,6 @@
                     </div>
                 </div>
                 {{Form::close()}}
-                    {{Form::close()}}
                 </div>
             </div>
         </div>

@@ -193,7 +193,7 @@
 														</tr>
 														<tr>
 															<td class="h1-1-white centered p-25-15" style="padding: 30px; color:#ffffff; font-family:'Barlow Condensed', Arial,sans-serif; font-size:44px; line-height:52px; text-align:center;" bgcolor="#d85d5c">
-																THANK YOU FOR YOUR INTEREST
+																New Applicant Details
 															</td>
 														</tr>
 														<tr>
@@ -201,7 +201,7 @@
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-4-white centered" style="padding-bottom: 30px; color:#ffffff; font-family:'Quicksand', Arial,sans-serif; font-size:22px; line-height:34px; text-align:center;">
-																			If you are shortlisted  our team will <strong>Get in touch</strong> with you
+																			Please kindly  <strong>Have a Look</strong> new Applicant CV
 																		</td>
 																	</tr>
 																</table>
@@ -237,7 +237,7 @@
 																	<!-- Section Head -->
 																	<tr>
 																		<td class="text-grey centered" style="padding-bottom: 30px; color:#7d7e80; font-family:'Quicksand', Arial,sans-serif; font-size:14px; line-height:24px; letter-spacing:3px; text-align:center;">
-																			Candidate: {{ $name }}
+																			Candidate Name : {{ $name }}
 																		</td>
 																	</tr>
 																	<!-- END Section Head -->
@@ -254,9 +254,12 @@
 																								<td class="plr-15">
 																									<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																										<tr>
-																											<td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:28px; line-height:36px; text-align:left;">
+																											<td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:18px; line-height:36px; text-align:left;">
 																												Email: {{ $email }}
 																											</td>
+                                                                                                            <td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:18px; line-height:36px; text-align:left;">
+                                                                                                                Contact Number: {{ $phone }}
+                                                                                                            </td>
 																										</tr>
 																										<tr>
 																											<td class="text-grey-1" style="padding-bottom: 15px; color:#7d7e80; font-family:'Quicksand', Arial,sans-serif; font-size:14px; line-height:24px; text-align:left;">

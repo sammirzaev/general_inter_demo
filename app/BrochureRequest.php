@@ -18,4 +18,11 @@ class BrochureRequest extends Model
     {
         return $this->belongsTo('App\Brochures');
     }
+
+
+
+    public function notify(Notifications\BrochureNotification $param)
+    {
+
+    }
 }

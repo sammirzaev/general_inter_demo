@@ -8,11 +8,6 @@
             <div class="modal-body">
                 {!! Form::open(['method'=>'POST', 'action'=>'BrochuresController@store', 'class'=>'', 'files'=>true]) !!}
                 <div class="row">
-                    <div class="form-group col-md-12">
-                        <div class="fallback">
-                            <input type="file" name="picture" id="input-file-now" class="dropify" />
-                        </div>
-                    </div>
                     <div class="form-group col-md-6">
                         {!! Form::text('brochure_name', null, ['class'=>'form-control', 'placeholder'=>'Create Brochure Name', 'id'=>'brochure_name']) !!}
                     </div>
@@ -33,12 +28,6 @@
                     </div>
                     <div class="form-group col-md-12">
                         {!! Form::select('is_publish',array( 1=>'Published', 0=>'Not Published'), 0,['class'=>'form-control', 'id'=>'inputStatus']) !!}
-                    </div>
-                    <div class="form-group col-md-12">
-                        {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Create Brochure Description', 'id'=>'mymce']) !!}
-                    </div>
-                    <div class="form-group col-md-12">
-                        {!! Form::textarea('description_ar', null, ['class'=>'form-control', 'placeholder'=>'Create Brochure Description Arabic', 'id'=>'mymce']) !!}
                     </div>
                 </div>
             </div>

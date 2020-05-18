@@ -121,23 +121,53 @@
             <meta name="twitter:description" content="{{$desc_twit->twit_desc}}">
         @endif
     @endforeach
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
-    <link rel="shortcut icon" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
-    <link rel="apple-touch-icon" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('public/assets/admin/assets/images/header-logo.png')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/job/css/linearicons.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/job/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/job/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/job/css/animate.min.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/job/css/main.css')}}">
-
-    <link href="{{asset('public/assets/admin/assets/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
-    <title>{{$title}}</title>
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{asset('assets/front/images/favicon/favicon.ico')}}">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/front/images/favicon/apple-icon-57x57.png')}}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset('assets/front/images/favicon/apple-icon-60x60.png')}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/front/images/favicon/apple-icon-72x72.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/front/images/favicon/apple-icon-76x76.png')}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('assets/front/images/favicon/apple-icon-114x114.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset('assets/front/images/favicon/apple-icon-120x120.png')}}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/front/images/favicon/apple-icon-144x144.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/front/images/favicon/apple-icon-152x152.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/front/images/favicon/apple-icon-180x180.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('assets/front/images/favicon/android-icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/front/images/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/front/images/favicon/favicon-96x96.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/front/images/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('assets/front/images/favicon/manifest.json')}}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{asset('assets/front//ms-icon-144x144.png')}}">
+        <meta name="theme-color" content="#ffffff">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/timeline.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/style-responsive.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/animate.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/vertical-rhythm.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/front/css/magnific-popup.css')}}">
+        <!-- Latest compiled and minified CSS 3.3.4 -->
+        <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.3.3.4.css')}}">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap-theme.min.css')}}">
+    <link href="{{asset('assets/admin/assets/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
+    <title>
+        @foreach($title as $titles)
+            @if($titles->is_publish == 1)
+            @if (app()->getLocale() == 'en')
+            {{$titles->getTranslation('title', 'en')}}
+            @elseif(app()->getLocale() == 'ar')
+            {{$titles->getTranslation('title', 'ar')}}
+            @endif
+            @else
+                General International Group
+            @endif
+        @endforeach
+    </title>
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="{{asset('public/assets/front/css/style.css')}}" rel="stylesheet" media="screen">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -164,22 +194,5 @@
  @endforeach
 <!--End Header Space Feature -->
     @yield('styles')
-    <style>
-        .goog-te-banner-frame,.custom-translate {
-            display: none;
-        }
-
-        .goog-tooltip {
-            display: none !important;
-        }
-        .goog-tooltip:hover {
-            display: none !important;
-        }
-        .goog-text-highlight {
-            background-color: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-    </style>
 </head>
 

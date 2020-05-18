@@ -16,7 +16,6 @@ class CreateJobCareersTable extends Migration
         Schema::create('job_careers', function (Blueprint $table) {
             $table->id();
             $table->integer('is_publish')->default(0);
-            $table->integer('brand_id')->index()->unsigned()->nullable();
             $table->string('job_name');
             $table->string('job_title');
             $table->text('job_desc');
