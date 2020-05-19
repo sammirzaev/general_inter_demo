@@ -133,7 +133,7 @@
                                         <!-- Row -->
                                         <div class="row">
                                             <!-- Col -->
-                                            <div class="col-sm-12 col-sm-offset-2">
+                                            <div class="col-sm-12">
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs tpl-tabs animate" id="tabs2">
                                                     @foreach($facility_categories as $facility_category)
@@ -160,7 +160,7 @@
                                                              <div class="tab-pane fade in @if($facility_service->type_id == $facility_type->id) {{ $loop->first ? 'active' : '' }} @endif"
                                                                   id="build-{{$facility_service->category->id}}">
                                                         <!--  Section tabs start -->
-                                                        <div class="col-md-9">
+                                                        <div class="col-md-12">
                                                             <h3 class="text-left pt-30">
                                                                 @if (app()->getLocale() == 'en')
                                                                     {!! $facility_service->getTranslation('title', 'en') !!}
@@ -188,7 +188,7 @@
                                                             </section>
                                                             <!-- End Section -->
                                                         </div>
-                                                        <div class="col-md-9">
+                                                        <div class="col-md-12">
                                                             @if (app()->getLocale() == 'en')
                                                                 {!! $facility_service->getTranslation('description', 'en') !!}
                                                             @elseif(app()->getLocale() == 'ar')

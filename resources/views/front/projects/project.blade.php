@@ -50,7 +50,7 @@
     <section class="page-section">
         <div class="container relative">
             <!-- Works Filter -->
-            <div class="works-filter font-alt align-center mb-100 mt-50">
+            <div class="works-filter font-alt align-center mb-20 mt-50">
                 @foreach($project_cats as $project_cat)
                 @if($loop->first)
                 <a href="#" class="filter active" data-filter="*">
@@ -65,7 +65,7 @@
                 @foreach($project_cats as $project_cat)
                 @if($project_cat->is_publish == 1)
                 @if($project_cat->id > 1)
-                <a href="#cat{{$project_cat->id}}" class="filter {{$loop->first ? 'active': ''}}" data-filter=".cat{{$project_cat->id}}">
+                <a href="#cat{{$project_cat->id}}" class="filter {{$loop->first ? 'active': ''}}" data-filter=".cat{{$project_cat->id}}" style="margin-bottom: 2%!important;">
                     @if (app()->getLocale() == 'en')
                         {{$project_cat->getTranslation('title', 'en')}}
                     @elseif(app()->getLocale() == 'ar')

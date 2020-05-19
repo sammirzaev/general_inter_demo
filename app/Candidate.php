@@ -21,4 +21,5 @@ class Candidate extends Model
     {
         return $this->belongsTo('App\JobCareers', 'job_id');
     }
+
 }

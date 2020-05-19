@@ -132,7 +132,7 @@
                                         <!-- Row -->
                                         <div class="row">
                                             <!-- Col -->
-                                            <div class="col-sm-12 col-sm-offset-2">
+                                            <div class="col-sm-12">
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs tpl-tabs animate" id="tabs2">
                                                    @foreach($security_categories as $security_category)
@@ -159,7 +159,7 @@
                                                               <div class="tab-pane fade in @if($security_service->type_id == $security_type->id) {{ $loop->first ? 'active' : '' }} @endif"
                                                                    id="secure{{$security_service->category->id}}">
                                                                     <!--  Section tabs start -->
-                                                                    <div class="col-md-9">
+                                                                    <div class="col-md-12">
                                                                         <h3 class="text-left pt-30" style="font-size: 30px;">
                                                                             @if (app()->getLocale() == 'en')
                                                                                 {!! $security_service->getTranslation('title', 'en') !!}
@@ -188,7 +188,7 @@
                                                                         <!-- End Section -->
                                                                      </div>
                                                                      <!--  End Section tabs start -->
-                                                                    <div class="col-md-9">
+                                                                    <div class="col-md-12">
                                                                         @if (app()->getLocale() == 'en')
                                                                             {!! $security_service->getTranslation('description', 'en') !!}
                                                                         @elseif(app()->getLocale() == 'ar')

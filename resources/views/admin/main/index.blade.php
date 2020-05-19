@@ -167,7 +167,7 @@
                                                 @if(count($projects) >0)
                                                 @foreach($projects  as $project)
                                                 <div class="col-lg-3 col-md-6 m-b-20">
-                                                    <img src="{{asset('/project-media/'.$project->media)}}" alt="user" class="img-responsive radius">
+                                                    <img src="{{$project->media}}" alt="user" class="img-responsive radius">
                                                 </div>
                                                 @endforeach
                                                 @else
