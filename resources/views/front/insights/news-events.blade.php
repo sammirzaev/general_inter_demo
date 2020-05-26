@@ -85,7 +85,7 @@
                                  @elseif(app()->getLocale() == 'ar')
                                  {{$news_post->getTranslation('title', 'ar')}}
                                  @endif"
-                            />
+                            width="360" height="200"/>
                         </a>
                     </div>
 

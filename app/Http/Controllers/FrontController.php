@@ -77,6 +77,7 @@ use App\JobCategory;
 use App\JobLocation;
 use App\JobSalary;
 use App\JobType;
+use App\LocationOffice;
 use App\Mail\BrochureRequestEmail;
 use App\Mail\Career;
 use App\Mail\Contact;
@@ -174,6 +175,7 @@ class FrontController extends Controller
         $footer_socials = FooterSocial::all();
         $nav_logos = NavLogo::all();
         $nav_menus = NavMenu::all();
+        $news_posts = NewsPost::orderBy('created_at', 'DESC')->take(1)->get();
         return view('front.home.index', compact(
             'title',
             'meta_key',
@@ -202,7 +204,8 @@ class FrontController extends Controller
             'footer_logos',
             'footer_socials',
             'nav_logos',
-            'nav_menus'
+            'nav_menus',
+            'news_posts',
         ));
     }
 
@@ -1020,6 +1023,7 @@ class FrontController extends Controller
         $footer_socials = FooterSocial::all();
         $nav_logos = NavLogo::all();
         $nav_menus = NavMenu::all();
+        $locations = LocationOffice::all();
         return view('front.contact.contact', compact(
             'title',
             'meta_key',
@@ -1049,7 +1053,8 @@ class FrontController extends Controller
             'footer_logos',
             'footer_socials',
             'nav_logos',
-            'nav_menus'
+            'nav_menus',
+            'locations'
         ));
     }
 
@@ -1065,6 +1070,7 @@ class FrontController extends Controller
         $email["to"] = $contact_email->contact_email;
         $email["subject"] = 'GIG NEW INQUIRY REQUEST';
         $data = array(
+            'location'=>$request->location,
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
@@ -1111,6 +1117,7 @@ class FrontController extends Controller
         $email["to"] = $contact_email->contact_email;
         $email["subject"] = 'GIG NEW SALES REQUEST';
         $data = array(
+            'location'=>$request->location,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,

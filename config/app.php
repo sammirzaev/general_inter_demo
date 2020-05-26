@@ -168,6 +168,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Alexusmai\LaravelFileManager\FileManagerServiceProvider::class,
         Arcanedev\Localization\LocalizationServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -237,6 +238,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
 
 
 

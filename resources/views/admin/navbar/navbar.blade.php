@@ -362,6 +362,7 @@
                     {{ Route::currentRouteName() === 'footer-logo.index' ? 'active' : '' }}
                     {{ Route::currentRouteName() === 'footer-title.index' ? 'active' : '' }}
                     {{ Route::currentRouteName() === 'footer-social.index' ? 'active' : '' }}
+                    {{ Route::currentRouteName() === 'location-office.index' ? 'active' : '' }}
                      " href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i>
                             <span class="hide-menu">Contact & Footer <span class="label label-rouded label-success pull-right"> 8</span></span></a>
                         <ul aria-expanded="false" class="collapse">
@@ -371,6 +372,7 @@
                             {{ Route::currentRouteName() === 'contact-request.index' ? 'active' : '' }}
                             {{ Route::currentRouteName() === 'contact-details.index' ? 'active' : '' }}
                             {{ Route::currentRouteName() === 'contact-map.index' ? 'active' : '' }}
+                            {{ Route::currentRouteName() === 'location-office.index' ? 'active' : '' }}
                              " href="#"> Contact Page <span class="label label-rouded label-light-success pull-right"> 5</span></a>
                                 <ul aria-expanded="false" class="collapse">
                                     <li><a class="{{ Route::currentRouteName() === 'contact-banner.index' ? 'active' : '' }}" href="{{route('contact-banner.index')}}">Banner</a></li>
@@ -378,6 +380,7 @@
                                     <li><a class="{{ Route::currentRouteName() === 'contact-request.index' ? 'active' : '' }}" href="{{route('contact-request.index')}}">Request Titles</a></li>
                                     <li><a class="{{ Route::currentRouteName() === 'contact-details.index' ? 'active' : '' }}" href="{{route('contact-details.index')}}">Details</a></li>
                                     <li><a class="{{ Route::currentRouteName() === 'contact-map.index' ? 'active' : '' }}" href="{{route('contact-map.index')}}">Map</a></li>
+                                    <li><a class="{{ Route::currentRouteName() === 'location-office.index' ? 'active' : '' }}" href="{{route('location-office.index')}}">Locations</a></li>
                                 </ul>
                             </li>
                             <li><a class="has-arrow

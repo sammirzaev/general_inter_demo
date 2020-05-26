@@ -12,6 +12,20 @@
                     <div class="col-md-12">
                         {!! Form::open(['method'=>'POST', 'action'=>['FrontController@salesEmail', app()->getLocale()], 'class'=>'form', 'files'=>true]) !!}
                             <div class="clearfix">
+                                <!--Location -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="input-md form-control location" required name="location">
+                                            <option value="" class="selected">Choose City</option>
+                                            @foreach($locations as $location)
+                                                @if($location->is_publish == 1)
+                                                    <option
+                                                        value="{{$location->location}}">{{$location->location}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <!--Name -->
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -89,6 +103,20 @@
                     <div class="col-md-12">
                         {!! Form::open(['method'=>'POST', 'action'=>['FrontController@contactEmail', app()->getLocale()], 'class'=>'form contact-form', 'files'=>true]) !!}
                             <div class="clearfix">
+                                <!--Location -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="input-md form-control location" required name="location">
+                                            <option value="" class="selected">Choose City</option>
+                                            @foreach($locations as $location)
+                                                    @if($location->is_publish == 1)
+                                                        <option
+                                                            value="{{$location->location}}">{{$location->location}}</option>
+                                                    @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <!--Name -->
                                 <div class="col-md-12">
                                     <div class="form-group">

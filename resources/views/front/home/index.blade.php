@@ -158,9 +158,9 @@
                 {{$home_partner->background}}
              @endif
              @endforeach
-                 ">
+                 " style="padding: 10px 0!important;">
         <div class="container relative">
-            <h2 class="section-title font-alt mb-70 mb-sm-40" style="color: rgba(0,0,0,.8);">
+            <h2 class="section-title font-alt mb-70 mb-sm-40" style="color: rgba(0,0,0,.8); margin-bottom: 5px!important;">
                 @foreach($home_partners as $home_partner)
                     @if($loop->first)
                         @if (app()->getLocale() == 'en')
@@ -172,7 +172,7 @@
                 @endforeach
             </h2>
             <!-- Features Grid -->
-            <div class="item-carousel owl-carousel">
+            <div class="item-carousel owl-carousel"  style="margin-bottom: -5px!important; padding-bottom: 5px!important;">
             @foreach($home_partners as $home_partner)
                 @if($home_partner->is_publish == 1)
                 <!-- Features Item -->
@@ -194,4 +194,98 @@
     <!-- Divider -->
     <hr class="mt-0 mb-0 "/>
     <!-- End Divider -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myMessage" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- modal header  -->
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title">Latest Post</h4>
+                </div>
+                @foreach($news_posts as $news_post)
+                @if($news_post->is_publish == 1)
+                <div class="modal-body" style="padding: 0!important;">
+                    <div class="col-sm-6 col-md-12 col-lg-12 mb-60 mt-40 mb-xs-40 text-center">
+{{--                        <div class="post-prev-img">--}}
+{{--                            <a href="#">--}}
+{{--                                <img src="{{$news_post->media->media}}"--}}
+{{--                                     alt="@if (app()->getLocale() == 'en')--}}
+{{--                                     {{$news_post->getTranslation('title', 'en')}}--}}
+{{--                                     @elseif(app()->getLocale() == 'ar')--}}
+{{--                                     {{$news_post->getTranslation('title', 'ar')}}--}}
+{{--                                     @endif"--}}
+{{--                                />--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+                        <div class="post-prev-title font-alt">
+                            <a href="#">
+                                @if (app()->getLocale() == 'en')
+                                    {{$news_post->getTranslation('title', 'en')}}
+                                @elseif(app()->getLocale() == 'ar')
+                                    {{$news_post->getTranslation('title', 'ar')}}
+                                @endif
+                            </a>
+                        </div>
+                        <div class="post-prev-info font-alt">
+                            <a href="#">
+                                {{$news_post->created_at->toFormattedDateString()}}
+                            </a>
+                        </div>
+
+                        <div class="post-prev-text">
+                            @if (app()->getLocale() == 'en')
+                                {!! Str::limit($news_post->getTranslation('description', 'en'), 150, ' ...') !!}
+                            @elseif(app()->getLocale() == 'ar')
+                                {!! Str::limit($news_post->getTranslation('description', 'ar'), 150, ' ...') !!}
+                            @endif
+                        </div>
+
+                        <div class="post-prev-more">
+                            <a href="{{route('news_single', [app()->getLocale(), $news_post->slug])}}" class="btn btn-mod btn-gray btn-round">
+                                Read More <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 @endif
+                @endforeach
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+@stop
+@section('scripts')
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    setTimeout(function(){
+        $('#myMessage').modal('show');
+    }, 3000);
+    // $(window).on('load',function(){
+    //     $('#myMessage').modal('show');
+    // });
+</script>
+@stop
+@section('styles')
+    <style>
+        #myMessage.modal.fade .modal-dialog {
+            transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+            opacity: 0;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        #myMessage.modal.fade.in .modal-dialog {
+            transform: perspective(400px) scale3d(.95, .95, .95);
+            animation-timing-function: ease-in;
+            opacity: 1;
+        }
+
+    </style>
 @stop

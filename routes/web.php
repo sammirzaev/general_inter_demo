@@ -231,6 +231,8 @@ Route::group(['middleware'=>'admin'], function() {
   Route::delete('/admin/delete/nav-logo', 'NavLogoController@deleteAll');
   Route::resource('/admin/nav-menu', 'NavMenuController');
   Route::delete('/admin/delete/nav-menu', 'NavMenuController@deleteAll');
+  Route::resource('/admin/location-office', 'LocationOfficeController');
+  Route::delete('/admin/delete/location-office', 'LocationOfficeController@deleteAll');
   Route::post('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 });
 
