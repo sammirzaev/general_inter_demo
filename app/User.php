@@ -37,15 +37,15 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo('App\Role', 'role_id');
     }
 
     public function position(){
-        return $this->belongsTo('App\Position');
+        return $this->belongsTo('App\Position','position_id');
     }
     public function photo()
     {
-        return $this->belongsTo('App\Photo');
+        return $this->belongsTo('App\Photo', 'photo_id');
     }
 
 

@@ -10,9 +10,9 @@ Primary use:    Created for GIG
 
 @import "font-awesome.min.css";
 @import "et-line.css";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
-@import url(https://fonts.googleapis.com/css?family=Dosis:300,400,700);
-@import url(https://fonts.googleapis.com/css?family=Orbitron:400,500,700,800&display=swap);
+@import "open_sans.css";
+@import "dosis.css";
+@import "orbitron.css";
 
 /*------------------------------------------------------------------
 [Table of contents]

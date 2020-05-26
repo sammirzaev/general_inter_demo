@@ -240,11 +240,16 @@
 																							<tr>
 																								<td class="plr-15">
 																									<table width="100%" border="0" cellspacing="0" cellpadding="0">
-																										<tr>
-																											<td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:28px; line-height:36px; text-align:center;">
-																												Customer Name: {{ $data['name'] }}
-																											</td>
-																										</tr>
+                                                                                                        <tr>
+                                                                                                            <td class="text-6" style="padding: 15px 0; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:28px; line-height:36px; text-align:center;">
+                                                                                                                Customer Name: {{ $data['name'] }}
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="h5" style="padding-bottom: 25px; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:20px; line-height:28px; text-align:left;">
+                                                                                                                Selected City: <strong class="link" style="color:#d85d5c; text-decoration:none;"> {{ $data['location'] }} </strong>
+                                                                                                            </td>
+                                                                                                        </tr>
 																										<tr>
 																											<td class="h5" style="padding-bottom: 25px; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:20px; line-height:28px; text-align:left;">
 																											Email :<strong class="link" style="color:#d85d5c; text-decoration:none;"> {{ $data['email'] }} </strong>

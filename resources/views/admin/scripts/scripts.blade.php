@@ -1002,5 +1002,13 @@
         modal.find('.modal-body #navmenu_id').val(navmenu_id);
     });
     //=====================End Nav Menu Confirm Delete============================================
+    //====================== Location Confirm Delete=============================================
+    $('#locationConfirmDelete').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget);
+        let location_id = button.data('locationid');
+        let modal = $(this);
+        modal.find('.modal-body #location_id').val(location_id);
+    });
+    //=====================End Location Confirm Delete============================================
 
 </script>

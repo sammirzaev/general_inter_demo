@@ -246,6 +246,11 @@
 																												Customer Name: {{ $data['name'] }}
 																											</td>
 																										</tr>
+                                                                                                        <tr>
+                                                                                                            <td class="h5" style="padding-bottom: 25px; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:20px; line-height:28px; text-align:left;">
+                                                                                                                Selected City: <strong class="link" style="color:#d85d5c; text-decoration:none;"> {{ $data['location'] }} </strong>
+                                                                                                            </td>
+                                                                                                        </tr>
 																										<tr>
 																											<td class="h5" style="padding-bottom: 25px; color:#1d2025; font-family:'Barlow Condensed', Arial,sans-serif; font-size:20px; line-height:28px; text-align:left;">
 																											Email :<strong class="link" style="color:#d85d5c; text-decoration:none;"> {{ $data['email'] }} </strong>
